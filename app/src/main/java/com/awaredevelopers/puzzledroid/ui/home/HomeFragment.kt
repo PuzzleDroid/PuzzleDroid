@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.awaredevelopers.puzzledroid.R
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
@@ -34,13 +36,17 @@ class HomeFragment : Fragment() {
                 val sdf = SimpleDateFormat("ss")
                 val currentDate = Integer.parseInt(sdf.format(Date()))
                 println(" C DATE is  $currentDate")
-                if(currentDate % 2 == 0){
+                if( textView.text != "otro"){
                     textView.text = "otro"
                 } else {
                     textView.text = "sdfaosdfnaosdnmvfckasdvfasd"
                 }
             }
         })
+
+        root.findViewById<ImageButton>(R.id.button_puzzle_cities).setOnClickListener {
+            findNavController().navigate(R.id.action_HomeFragment_to_PuzzleFragment)
+        }
         return root
     }
 }
