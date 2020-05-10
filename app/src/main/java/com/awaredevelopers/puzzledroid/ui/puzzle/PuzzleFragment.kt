@@ -1,4 +1,4 @@
-package com.awaredevelopers.puzzledroid.ui.gallery
+package com.awaredevelopers.puzzledroid.ui.puzzle
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.awaredevelopers.puzzledroid.R
+import com.awaredevelopers.puzzledroid.ui.gallery.PuzzleViewModel
 
-class GalleryFragment : Fragment() {
+class PuzzleFragment : Fragment() {
 
     private lateinit var puzzleViewModel: PuzzleViewModel
 
