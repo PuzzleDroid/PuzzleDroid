@@ -12,14 +12,17 @@
         tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
-            app:destination="@id/nav_home_second" />
+            android:id="@+id/action_HomeFragment_to_PuzzleFragment"
+            app:destination="@id/nav_puzzle" />
+        <action
+            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
+            app:destination="@id/nav_slideshow" />
     </fragment>
     <fragment
-        android:id="@+id/nav_home_second"
-        android:name="com.awaredevelopers.puzzledroid.ui.home.HomeSecondFragment"
-        android:label="@string/home_second"
-        tools:layout="@layout/fragment_home_second">
+        android:id="@+id/nav_home_help"
+        android:name="com.awaredevelopers.puzzledroid.ui.help.HelpFragment"
+        android:label="@string/menu_help"
+        tools:layout="@layout/fragment_help">
         <action
             android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
             app:destination="@id/nav_home" />
@@ -30,14 +33,13 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.awaredevelopers.puzzledroid.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.awaredevelopers.puzzledroid.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_puzzle"
+        android:name="com.awaredevelopers.puzzledroid.ui.puzzle.PuzzleFragment"
+        tools:layout="@layout/fragment_puzzle" />
 </navigation>

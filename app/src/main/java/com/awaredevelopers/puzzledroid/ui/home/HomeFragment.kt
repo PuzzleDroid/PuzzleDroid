@@ -1,13 +1,17 @@
 package com.awaredevelopers.puzzledroid.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import com.awaredevelopers.puzzledroid.NPuzzleActivity
 import com.awaredevelopers.puzzledroid.R
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
@@ -34,13 +38,23 @@ class HomeFragment : Fragment() {
                 val sdf = SimpleDateFormat("ss")
                 val currentDate = Integer.parseInt(sdf.format(Date()))
                 println(" C DATE is  $currentDate")
-                if(currentDate % 2 == 0){
-                    textView.text = "otro"
+                if( textView.text != "Pinto un texto"){
+                    textView.text = "Pinto un texto"
                 } else {
-                    textView.text = "sdfaosdfnaosdnmvfckasdvfasd"
+                    textView.text = "Pinot otro texto!!!!!"
                 }
             }
         })
+
+        root.findViewById<ImageButton>(R.id.button_puzzle_cities).setOnClickListener {
+//            Para navegar a los diferentes fragments desde cualquier punto del contenedor.
+//            findNavController().navigate(R.id.action_HomeFragment_to_PuzzleFragment)
+            val intent = Intent(activity, NPuzzleActivity::class.java).apply {
+//               Para pasar argumentos al Activity
+//                putExtra(EXTRA_MESSAGE, message)
+            }
+            startActivity(intent)
+        }
         return root
     }
 }

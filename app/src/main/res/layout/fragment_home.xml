@@ -5,6 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
+<androidx.appcompat.widget.AppCompatImageButton
+    android:id="@+id/button_puzzle_cities"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:src="@drawable/common_google_signin_btn_text_dark"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    />
 
     <TextView
         android:id="@+id/text_home"

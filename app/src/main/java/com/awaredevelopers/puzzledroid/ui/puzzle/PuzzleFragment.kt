@@ -1,4 +1,4 @@
-package com.awaredevelopers.puzzledroid.ui.gallery
+package com.awaredevelopers.puzzledroid.ui.puzzle
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,21 +9,22 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.awaredevelopers.puzzledroid.R
+import com.awaredevelopers.puzzledroid.ui.gallery.PuzzleViewModel
 
-class GalleryFragment : Fragment() {
+class PuzzleFragment : Fragment() {
 
-    private lateinit var galleryViewModel: GalleryViewModel
+    private lateinit var puzzleViewModel: PuzzleViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel::class.java)
+        puzzleViewModel =
+                ViewModelProviders.of(this).get(PuzzleViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_gallery, container, false)
         val textView: TextView = root.findViewById(R.id.text_gallery)
-        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
+        puzzleViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
