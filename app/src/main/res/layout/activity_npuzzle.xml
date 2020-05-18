@@ -7,11 +7,20 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
+    <ImageView
+        android:id="@+id/myImageView"
+        android:src="@drawable/common_google_signin_btn_icon_dark_normal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible" />
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
-        />
+        android:visibility="invisible"
+        tools:layout_editor_absoluteX="149dp"
+        tools:layout_editor_absoluteY="365dp"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

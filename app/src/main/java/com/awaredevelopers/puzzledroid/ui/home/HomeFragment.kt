@@ -10,8 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
-import com.awaredevelopers.puzzledroid.NPuzzleActivity
+import com.awaredevelopers.puzzledroid.ui.NPuzzle.NPuzzleActivity
 import com.awaredevelopers.puzzledroid.R
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
