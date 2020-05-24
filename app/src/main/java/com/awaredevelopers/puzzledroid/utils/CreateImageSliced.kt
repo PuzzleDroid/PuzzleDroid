@@ -1,11 +1,8 @@
 package com.awaredevelopers.puzzledroid.utils
 
-import android.R.attr.bitmap
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import com.google.common.io.Resources
-
 
 object CreateImageSliced {
 
@@ -14,8 +11,8 @@ object CreateImageSliced {
         val mutableMap: MutableMap<String, Bitmap> = mutableMapOf<String, Bitmap>()
 
         // Number of rows and columns
-        var col = 4
-        var row = 6
+        val col = 4
+        val row = 6
 
         // Image total width and total height
         val tWidth = bmp.width
@@ -81,9 +78,9 @@ object CreateImageSliced {
                 val drawable = BitmapDrawable(
                     Bitmap.createBitmap(bmp, y, x, eWidth, eHeight)
                 )
-                val nPuzzlePortion: NPuzzlePortion = NPuzzlePortion(
+                val nPuzzlePortion = NPuzzlePortion(
                     id = count,
-                    coord = Coordinates(i+1,j+1),
+                    coord = Coordinates(j+1,i+1),
                     numCols = cols,
                     numRows = rows,
                     level = level,
@@ -99,8 +96,6 @@ object CreateImageSliced {
     }
 }
 class Coordinates(var x: Int, var y: Int){
-    override fun toString(): String {
-        return "x= $x | y=$y"
-    }
+    override fun toString(): String { return "x= $x | y=$y" }
 }
 class NPuzzlePortion(val id:Int, val coord: Coordinates, var numCols: Int, var numRows: Int, val level: Int, val drawable: Drawable)

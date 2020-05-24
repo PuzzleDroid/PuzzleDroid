@@ -1,6 +1,5 @@
 package com.awaredevelopers.puzzledroid.ui.nPuzzle
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -12,19 +11,17 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import com.awaredevelopers.puzzledroid.R
-import com.awaredevelopers.puzzledroid.utils.NPuzzlePortion
+import com.awaredevelopers.puzzledroid.utils.*
 import kotlin.collections.ArrayList
-import kotlin.random.Random
 
 class NPuzzleAdapter() : BaseAdapter(){
-    private lateinit var nPuzzleList:List<NPuzzlePortion>
-    private lateinit var list: MutableList<Pair<Drawable,String>>
+    private lateinit var nPuzzleList:MutableList<NPuzzlePortion>
+    private lateinit var list: List<Pair<Drawable,String>>
     private var isFirstRun = true
 
     constructor (nPuzzleList: List<NPuzzlePortion>): this(){
-        this.nPuzzleList = nPuzzleList
+        this.nPuzzleList = nPuzzleList as MutableList<NPuzzlePortion>
         this.list = nPuzzlePieces()
-
     }
     /*
         **** reference source developer.android.com ***
@@ -36,7 +33,6 @@ class NPuzzleAdapter() : BaseAdapter(){
             parameters unless you use inflate(int, android.view.ViewGroup, boolean)
             to specify a root view and to prevent attachment to the root.
     */
-    @SuppressLint("InflateParams")
     override fun getView(position:Int, convertView: View?, parent: ViewGroup?):View{
         // Inflate the custom view
         val inflater = parent?.context?.
@@ -44,56 +40,28 @@ class NPuzzleAdapter() : BaseAdapter(){
         val view = inflater.inflate(R.layout.custom_view,null)
 
         // Get the custom view widgets reference
-        val grid = view.findViewById<ImageView>(R.id.gridContent)
-        val gridElement = view.findViewById<CardView>(R.id.gridElementContent)
+        val gridPiece = view.findViewById<ImageView>(R.id.gridPiece)
+        val cardContainer = view.findViewById<CardView>(R.id.cardContainer)
 
         // Display drawable on ImageView
-        grid.setImageDrawable(list[position].first)
-
+        gridPiece.setImageDrawable(list[position].first)
 
         // Set background color for card view
 //        popup.setCardBackgroundColor(list[position].second)
 
         // Set a click listener for card view
-        gridElement.setOnClickListener{
+        cardContainer.setOnClickListener{
 
             if (isFirstRun) {
+                nPuzzleList.removeAt(nPuzzleList.lastIndex)
+                nPuzzleList = nPuzzleList.shuffled() as MutableList<NPuzzlePortion>
+                list = nPuzzlePieces()
+                notifyDataSetChanged()
                 isFirstRun = false
-//                list.shuffle()
-
-
-//                val inflater = parent?.context?.
-//                getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-//                val view = inflater.inflate(R.layout.custom_view,null)
-
-
-
-
-
-
-
-                val nextValues = List(list.size) { Random.nextInt(0, list.size)}
-                for(s in nextValues) println("------------------------> $s ")
-
-                val start = 0
-                val end = list.size
-                grid.setImageDrawable(list[rand(start, end)].first)
-
-
-                var listOrdenando  = mutableListOf(1,2,3)
-                for(s in listOrdenando) println("$s ")
-
-                var listDesordenado = listOrdenando.shuffled()
-                for(i in listDesordenado) println("$i ")
-
-
 
             } else {
-
-                // Show selected color in a toast message
                 Toast.makeText(
-                    parent.context,
-                    "Clicked : ${list[position].second}", Toast.LENGTH_SHORT
+                    parent.context, "Coord: ${list[position].second}", Toast.LENGTH_SHORT
                 ).show()
 
                 // Get the activity reference from parent
@@ -104,10 +72,9 @@ class NPuzzleAdapter() : BaseAdapter(){
                     .getChildAt(0)
 
                 // Change the root layout background color
-//            viewGroup.setBackgroundColor(list[position].second)
+//               viewGroup.setBackgroundColor(Color.parseColor("#b5d6e1"))
             }
         }
-
         // Finally, return the view
         return view
     }
@@ -147,19 +114,10 @@ class NPuzzleAdapter() : BaseAdapter(){
     }
 
     private fun nPuzzlePieces():MutableList<Pair<Drawable,String>> {
-
         val gridList: MutableList<Pair<Drawable,String>> = ArrayList<Pair<Drawable,String>>()
         for (element in nPuzzleList){
-            println(element.coord.toString())
-
             gridList.add(Pair(element.drawable, element.coord.toString()))
         }
-
         return gridList
-    }
-
-    fun rand(start: Int, end: Int): Int {
-        require(start <= end) { "Illegal Argument" }
-        return (start..end).random()
     }
 }
