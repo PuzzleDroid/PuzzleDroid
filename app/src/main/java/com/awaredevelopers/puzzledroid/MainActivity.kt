@@ -40,8 +40,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        //TODO BORRAR LA LLAMADA A LA FUNCIÓN Y LA FUNCIÓN EN SI MISMA...
-        foo()
+
 
     }
 
@@ -56,19 +55,6 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    fun foo (): String {
 
-        var objectJava = FooJava("pos un string", 12, true, FooJava.RANDOMDES.DES1)
-        var objectKotlin = FooKotlin("pos otro string...", 45, false,FooKotlin.RANDOMDES.DES1)
-
-        println("\n======================")
-        println("\nOBJET JAVA:")
-        println(objectJava.toString())
-        println("\nOBJET KOTLIN:")
-        println(objectKotlin.toString())
-        println("\n======================")
-
-        return objectKotlin.toString()
-    }
 
 }

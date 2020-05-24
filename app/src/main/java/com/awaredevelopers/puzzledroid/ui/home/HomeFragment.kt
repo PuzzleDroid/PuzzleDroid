@@ -29,7 +29,7 @@ class HomeFragment : Fragment() {
         homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
+        /*val textView: TextView = root.findViewById(R.id.text_home)
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
 
@@ -42,16 +42,32 @@ class HomeFragment : Fragment() {
                     textView.text = "Pinto un texto"
                 } else {
                     textView.text = "Pinot otro texto!!!!!"
-                }
-            }
-        })
+                }*/
 
-        root.findViewById<ImageButton>(R.id.button_puzzle_cities).setOnClickListener {
+
+        root.findViewById<ImageButton>(R.id.predefined).setOnClickListener {
 //            Para navegar a los diferentes fragments desde cualquier punto del contenedor.
 //            findNavController().navigate(R.id.action_HomeFragment_to_PuzzleFragment)
-            val intent = Intent(activity, NPuzzleActivity::class.java).apply {
-//               Para pasar argumentos al Activity
-//                putExtra(EXTRA_MESSAGE, message)
+            val intent = Intent(context, NPuzzleActivity::class.java).apply {
+            }
+            startActivity(intent)
+        }
+
+        root.findViewById<ImageButton>(R.id.camera).setOnClickListener {
+            val intent = Intent(context, NPuzzleActivity::class.java).apply {
+            }
+            startActivity(intent)
+        }
+
+        root.findViewById<ImageButton>(R.id.galery).setOnClickListener {
+
+            val intent = Intent(context, NPuzzleActivity::class.java).apply {
+            }
+            startActivity(intent)
+        }
+
+        root.findViewById<ImageButton>(R.id.online).setOnClickListener {
+            val intent = Intent(context, NPuzzleActivity::class.java).apply {
             }
             startActivity(intent)
         }

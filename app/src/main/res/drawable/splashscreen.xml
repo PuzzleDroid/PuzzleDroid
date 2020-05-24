@@ -3,6 +3,6 @@
     <item android:drawable="@color/colorPrimary"></item>
     <item>
         <bitmap android:src="@mipmap/logo"
-            android:gravity="fill_horizontal"/>
+            />
     </item>
 </layer-list>
