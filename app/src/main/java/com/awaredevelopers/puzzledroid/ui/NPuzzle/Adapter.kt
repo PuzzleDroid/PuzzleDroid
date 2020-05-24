@@ -8,12 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import com.awaredevelopers.puzzledroid.R
 
-class ColorBaseAdapter : BaseAdapter(){
+class Adapter : BaseAdapter(){
     private val list = colors()
     /*
         **** reference source developer.android.com ***
@@ -33,8 +34,10 @@ class ColorBaseAdapter : BaseAdapter(){
         val view = inflater.inflate(R.layout.custom_view,null)
 
         // Get the custom view widgets reference
-        val tv = view.findViewById<TextView>(R.id.tv_name)
+        val tv = view.findViewById<TextView>(R.id.textoGrid)
         val card = view.findViewById<CardView>(R.id.card_view)
+
+
 
         // Display color name on text view
         tv.text = list[position].first
@@ -105,14 +108,18 @@ class ColorBaseAdapter : BaseAdapter(){
         return list.size
     }
 
+private fun puzzle() :Map<String,ImageView>{
 
+    return puzzle()
+}
 
 
     // Custom method to generate list of color name value pair
     private fun colors():List<Pair<String,Int>>{
         return listOf(
-            Pair("INDIANRED", Color.parseColor("#CD5C5C")),
+
             Pair("LIGHTCORAL",Color.parseColor("#F08080")),
+            Pair("INDIANRED", Color.parseColor("#CD5C5C")),
             Pair("SALMON",Color.parseColor("#FA8072")),
             Pair("DARKSALMON",Color.parseColor("#E9967A")),
             Pair("LIGHTSALMON",Color.parseColor("#FFA07A")),
