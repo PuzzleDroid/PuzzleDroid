@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import com.awaredevelopers.puzzledroid.R;
 
 public class NPuzzleAdapterJava extends BaseAdapter {
+
+
+    //TODO por eliminar...
     // Contexto de la aplicación
     private Context mContext;
 
