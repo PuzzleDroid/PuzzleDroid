@@ -1,8 +1,11 @@
 package com.awaredevelopers.puzzledroid.utils
 
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+
 
 object CreateImageSliced {
 
@@ -43,7 +46,7 @@ object CreateImageSliced {
 
         val nPuzzle: MutableList<NPuzzlePortion> = ArrayList<NPuzzlePortion>()
 
-        val level = 2 //TODO Obtener el nivel como parámetro. El lvl debe tenerlo la clase NPuzzle
+        val level = 1 //TODO Obtener el nivel como parámetro. El lvl debe tenerlo la clase NPuzzle
 
         // Number of rows and columns
         var cols = 0
@@ -74,7 +77,6 @@ object CreateImageSliced {
 
             for (j in 0 until cols) {
                 println("Creating piece: $i$j")
-                count += 1
                 val drawable = BitmapDrawable(
                     Bitmap.createBitmap(bmp, y, x, eWidth, eHeight)
                 )
@@ -87,7 +89,7 @@ object CreateImageSliced {
                     drawable = drawable
                 )
                 nPuzzle.add(nPuzzlePortion)
-
+                count += 1
                 y += eWidth
             }
             x += eHeight
@@ -96,6 +98,12 @@ object CreateImageSliced {
     }
 }
 class Coordinates(var x: Int, var y: Int){
-    override fun toString(): String { return "x= $x | y=$y" }
+    override fun toString(): String { return "( $x, $y)" }
 }
-class NPuzzlePortion(val id:Int, val coord: Coordinates, var numCols: Int, var numRows: Int, val level: Int, val drawable: Drawable)
+class NPuzzlePortion(val id:Int, val coord: Coordinates, var numCols: Int, var numRows: Int, val level: Int, val drawable: Drawable) {
+    constructor(): this(
+       -1, Coordinates(-1,-1),-1,-1,-1, ColorDrawable(Color.TRANSPARENT)
+    )
+    override fun toString(): String { return "ID: $id \n( x, y): $coord \nCols: $numCols, Rows: $numRows \nLevel: $level"
+    }
+}

@@ -2,7 +2,6 @@ package com.awaredevelopers.puzzledroid.ui.nPuzzle
 
 import android.app.Activity
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,18 +9,19 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import com.awaredevelopers.puzzledroid.utility.NPuzzleRules
 import com.awaredevelopers.puzzledroid.R
 import com.awaredevelopers.puzzledroid.utils.*
-import kotlin.collections.ArrayList
+import java.util.*
 
 class NPuzzleAdapter() : BaseAdapter(){
     private lateinit var nPuzzleList:MutableList<NPuzzlePortion>
-    private lateinit var list: List<Pair<Drawable,String>>
+    private lateinit var list: List<NPuzzlePortion>
     private var isFirstRun = true
 
     constructor (nPuzzleList: List<NPuzzlePortion>): this(){
         this.nPuzzleList = nPuzzleList as MutableList<NPuzzlePortion>
-        this.list = nPuzzlePieces()
+        this.list = nPuzzleList
     }
     /*
         **** reference source developer.android.com ***
@@ -44,7 +44,7 @@ class NPuzzleAdapter() : BaseAdapter(){
         val cardContainer = view.findViewById<CardView>(R.id.cardContainer)
 
         // Display drawable on ImageView
-        gridPiece.setImageDrawable(list[position].first)
+        gridPiece.setImageDrawable(list[position].drawable)
 
         // Set background color for card view
 //        popup.setCardBackgroundColor(list[position].second)
@@ -54,15 +54,22 @@ class NPuzzleAdapter() : BaseAdapter(){
 
             if (isFirstRun) {
                 nPuzzleList.removeAt(nPuzzleList.lastIndex)
-                nPuzzleList = nPuzzleList.shuffled() as MutableList<NPuzzlePortion>
-                list = nPuzzlePieces()
+                nPuzzleList.add(NPuzzlePortion())
+                list = nPuzzleList.shuffled() as MutableList<NPuzzlePortion>
                 notifyDataSetChanged()
                 isFirstRun = false
 
             } else {
                 Toast.makeText(
-                    parent.context, "Coord: ${list[position].second}", Toast.LENGTH_SHORT
+                    parent.context, "Position= ${getItemId(position)}\n ${list[position].toString()}", Toast.LENGTH_SHORT
                 ).show()
+
+                Collections.swap(list, position, NPuzzleRules.getEmptySpace(position, list, list[position].numCols));
+                notifyDataSetChanged()
+
+                if(NPuzzleRules.getCorrectorder(list)){
+                    println("-------------------------------> Auuuu! You win")
+                }
 
                 // Get the activity reference from parent
                 val activity = parent.context as Activity
@@ -111,13 +118,5 @@ class NPuzzleAdapter() : BaseAdapter(){
     // Count the items
     override fun getCount(): Int {
         return list.size
-    }
-
-    private fun nPuzzlePieces():MutableList<Pair<Drawable,String>> {
-        val gridList: MutableList<Pair<Drawable,String>> = ArrayList<Pair<Drawable,String>>()
-        for (element in nPuzzleList){
-            gridList.add(Pair(element.drawable, element.coord.toString()))
-        }
-        return gridList
     }
 }

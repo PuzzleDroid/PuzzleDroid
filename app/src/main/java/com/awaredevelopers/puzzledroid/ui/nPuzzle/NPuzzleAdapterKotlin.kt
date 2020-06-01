@@ -8,6 +8,9 @@ import java.util.*
 
 class NPuzzleAdapterKotlin(nPuzzlePortion: ArrayList<NPuzzlePortion>, context: Context) :
     ArrayAdapter<NPuzzlePortion>(context, R.layout.activity_npuzzle, nPuzzlePortion) {
+
+
+    //TODO por eliminar...
 //
 //    //view holder is used to prevent findViewById calls
 //    private class AttractionItemViewHolder {
