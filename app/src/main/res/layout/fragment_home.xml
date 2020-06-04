@@ -3,74 +3,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/fondo"
     tools:context=".ui.home.HomeFragment">
 
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:layout_marginTop="60dp">
 
         <TableRow
-            android:background="#128675"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
 
-                android:src="@mipmap/topten" />
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:gravity="center"
+                android:src="@mipmap/name" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/start"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_column="0"
+                android:layout_marginTop="30dp"
+
+                android:gravity="center|start"
+                android:src="@mipmap/start" />
         </TableRow>
 
         <TableRow
-             android:background="#128675"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+
             android:gravity="center">
 
-            <ImageButton
-                android:id="@+id/predefined"
+            <ImageView
+                android:id="@+id/score"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="60dp"
                 android:layout_column="0"
-                android:gravity="center|start"
-                android:src="@mipmap/predefined" />
+                android:layout_marginTop="30dp"
 
-            <ImageButton
-                android:id="@+id/galery"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_column="1"
                 android:gravity="center"
-                android:src="@mipmap/galery" />
+                android:src="@mipmap/score" />
 
         </TableRow>
 
         <TableRow
-            android:background="#128675"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+
             android:gravity="center">
 
-            <ImageButton
-                android:id="@+id/camera"
+            <ImageView
+                android:id="@+id/exit"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="60dp"
                 android:layout_column="0"
-                android:gravity="center|start"
-                android:src="@mipmap/camera" />
+                android:layout_marginTop="30dp"
 
-            <ImageButton
-                android:id="@+id/online"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_column="1"
                 android:gravity="center"
-                android:src="@mipmap/multiplayer" />
+                android:src="@mipmap/exit" />
 
         </TableRow>
     </TableLayout>
