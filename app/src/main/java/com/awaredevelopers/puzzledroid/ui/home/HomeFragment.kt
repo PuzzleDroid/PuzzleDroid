@@ -7,9 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProviders
+import androidx.room.Room
 import com.awaredevelopers.puzzledroid.ui.nPuzzle.NPuzzleActivity
 import com.awaredevelopers.puzzledroid.R
+import com.awaredevelopers.puzzledroid.db.AppDatabase
+import com.awaredevelopers.puzzledroid.db.dao.ScoreDao
+import com.awaredevelopers.puzzledroid.db.entity.ScoreEntity
 
 class HomeFragment : Fragment() {
 
@@ -23,6 +28,19 @@ class HomeFragment : Fragment() {
         homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
+
+        val applicationContext = context!!.getApplicationContext()
+
+        val db = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java, "database-name"
+        ).build()
+
+        db.scoreDao().insertScore(ScoreEntity(10, 1))
+
+        val scores = db.scoreDao().loadAllScores()
+
+
         /*val textView: TextView = root.findViewById(R.id.text_home)
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
