@@ -25,7 +25,7 @@ class HelpFragment: Fragment()  {
         helpViewModel =
             ViewModelProviders.of(this).get(HelpViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_help, container, false)
-        val webview = root.findViewById<WebView>(R.id.webview)
+        val webview = root.findViewById<WebView>(R.id.help_webview)
         webview.settings.javaScriptEnabled = true
         webview.loadUrl(URL)
 

@@ -6,12 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import com.awaredevelopers.puzzledroid.ui.nPuzzle.NPuzzleActivity
 import com.awaredevelopers.puzzledroid.R
+import com.awaredevelopers.puzzledroid.ui.gameModes.GameModesFragment
+import java.lang.System.exit
+import kotlin.system.exitProcess
 import com.awaredevelopers.puzzledroid.db.AppDatabase
 import com.awaredevelopers.puzzledroid.db.dao.ScoreDao
 import com.awaredevelopers.puzzledroid.db.entity.ScoreEntity
@@ -56,32 +61,16 @@ class HomeFragment : Fragment() {
                     textView.text = "Pinot otro texto!!!!!"
                 }*/
 
-
-        root.findViewById<ImageButton>(R.id.predefined).setOnClickListener {
-//            Para navegar a los diferentes fragments desde cualquier punto del contenedor.
-//            findNavController().navigate(R.id.action_HomeFragment_to_PuzzleFragment)
-            val intent = Intent(context, NPuzzleActivity::class.java).apply {
-            }
-            startActivity(intent)
+        root.findViewById<ImageView>(R.id.start).setOnClickListener {
+            findNavController().navigate(R.id.action_HomeFragment_to_GameModesFragment)
         }
 
-        root.findViewById<ImageButton>(R.id.camera).setOnClickListener {
-            val intent = Intent(context, NPuzzleActivity::class.java).apply {
-            }
-            startActivity(intent)
+        root.findViewById<ImageView>(R.id.score).setOnClickListener {
+            findNavController().navigate(R.id.action_HomeFragment_to_ScoresFragment)
         }
 
-        root.findViewById<ImageButton>(R.id.galery).setOnClickListener {
-
-            val intent = Intent(context, NPuzzleActivity::class.java).apply {
-            }
-            startActivity(intent)
-        }
-
-        root.findViewById<ImageButton>(R.id.online).setOnClickListener {
-            val intent = Intent(context, NPuzzleActivity::class.java).apply {
-            }
-            startActivity(intent)
+        root.findViewById<ImageView>(R.id.exit).setOnClickListener {
+            exitProcess(0)
         }
         return root
     }
