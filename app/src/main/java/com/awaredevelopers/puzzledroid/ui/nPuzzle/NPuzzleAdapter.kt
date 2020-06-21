@@ -1,32 +1,47 @@
 package com.awaredevelopers.puzzledroid.ui.nPuzzle
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.util.Log.i
+import android.database.DataSetObserver
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.BaseAdapter
 import android.widget.ImageView
-import android.widget.Toast
+import android.widget.RelativeLayout
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.startActivity
-import com.awaredevelopers.puzzledroid.utility.NPuzzleRules
 import com.awaredevelopers.puzzledroid.R
-import com.awaredevelopers.puzzledroid.ui.home.HomeFragment
-import com.awaredevelopers.puzzledroid.utils.*
-import kotlinx.android.synthetic.main.activity_main.view.*
+import com.awaredevelopers.puzzledroid.model.NPuzzle
+import com.awaredevelopers.puzzledroid.utility.NPuzzlePortion
+import com.awaredevelopers.puzzledroid.utility.NPuzzleRules
+import kotlinx.android.synthetic.main.activity_npuzzle.*
 import java.util.*
-import kotlin.coroutines.coroutineContext
 
+
+/**
+ * Custom Adapter. It allows to control what is painted in the GridView as well as its behavior.
+ * The main object is the nPuzzleList collection with sliced pieces of the NPuzzle.
+ */
 class NPuzzleAdapter() : BaseAdapter(){
     private lateinit var nPuzzleList:MutableList<NPuzzlePortion>
     private lateinit var list: List<NPuzzlePortion>
+    private lateinit var nPuzzle: NPuzzle
     private var isFirstRun = true
-    constructor (nPuzzleList: List<NPuzzlePortion>): this(){
-        this.nPuzzleList = nPuzzleList as MutableList<NPuzzlePortion>
-        this.list = nPuzzleList
+    private var isSolved = false
+    private var movementsCounter = 0
+
+    constructor (nPuzzle: NPuzzle): this(){
+        this.nPuzzleList = nPuzzle.nPuzzlePortions as MutableList<NPuzzlePortion>
+        this.list = nPuzzle.nPuzzlePortions
+        this.nPuzzle = nPuzzle
+    }
+
+    companion object{
+        private const val TAG = "NPuzzleAdapter"
     }
     /*
         **** reference source developer.android.com ***
@@ -38,6 +53,7 @@ class NPuzzleAdapter() : BaseAdapter(){
             parameters unless you use inflate(int, android.view.ViewGroup, boolean)
             to specify a root view and to prevent attachment to the root.
     */
+    @SuppressLint("ViewHolder", "InflateParams")
     override fun getView(position:Int, convertView: View?, parent: ViewGroup?):View{
         // Inflate the custom view
         val inflater = parent?.context?.
@@ -48,50 +64,72 @@ class NPuzzleAdapter() : BaseAdapter(){
         val gridPiece = view.findViewById<ImageView>(R.id.gridPiece)
         val cardContainer = view.findViewById<CardView>(R.id.cardContainer)
 
-
         // Display drawable on ImageView
         gridPiece.setImageDrawable(list[position].drawable)
-
-        // Set background color for card view
-//        popup.setCardBackgroundColor(list[position].second)
 
         // Set a click listener for card view
         cardContainer.setOnClickListener{
 
-            if (isFirstRun) {
-                nPuzzleList.removeAt(nPuzzleList.lastIndex)
-                nPuzzleList.add(NPuzzlePortion())
-                list = nPuzzleList.shuffled() as MutableList<NPuzzlePortion>
-                notifyDataSetChanged()
-                isFirstRun = false
+            if (!isSolved) {
+                if (isFirstRun) {
+                    //On first click we replace the last piece with a blank one, shuffle and repaint.
+                    nPuzzleList.removeAt(nPuzzleList.lastIndex)
+                    nPuzzleList.add(NPuzzlePortion())
+                    list = nPuzzleList.shuffled() as MutableList<NPuzzlePortion>
+                    notifyDataSetChanged()
+                    isFirstRun = false
+                } else {
+                    //Toast to popup a debug msg with detailed information.
+//                Toast.makeText(
+//                    parent.context, "Position= ${getItemId(position)}\n ${list[position].toString()}", Toast.LENGTH_SHORT
+//                ).show()
 
-            } else {
-               /* Toast.makeText(
-                    parent.context, "Position= ${getItemId(position)}\n ${list[position].toString()}", Toast.LENGTH_SHORT
-                ).show()*/
+                    Log.d(TAG, "Movement #${++movementsCounter}")
 
-                Collections.swap(list, position, NPuzzleRules.getEmptySpace(position, list, list[position].numCols));
-                notifyDataSetChanged()
+                    //On click swap the content between two pieces if the piece with the "empty space" is in the right position.
+                    Collections.swap(
+                        list,
+                        position,
+                        NPuzzleRules.getEmptySpace(position, list, list[position].numCols)
+                    )
 
-                if(NPuzzleRules.getCorrectorder(list)){
+                    //TODO animaciones no funcionan si hacemos un notifyDataSetChanged()
+//                    val anim = AnimationUtils.loadAnimation(
+//                        view.context,
+//                        R.anim.fade_in
+//                    )
+//                    anim.startOffset = (position * 500).toLong()
+//                    view.animation = anim
+//                    anim.start()
 
-                  println("-------------->You Win")
+                    notifyDataSetChanged()
+
+                    //Incremental check to verify if the NPuzzle was solved.
+                    if (NPuzzleRules.isCorrectOrder(list)) {
+                        //Fragment dialog --> Tiempo empleado, felicidades amijo, etc... con botones aceptar y a correr al Home...
+                        Log.d(TAG, "-------------------------------> Auuuu! You win")
+                        val nPuzzleActivity = parent.context as Activity
+                        //Stop timmer
+                        nPuzzleActivity.chronometer.stop()
+                        //Disable gridview
+                        isSolved = true
+
+                        //Showing final popup
+                        var winPopup = nPuzzleActivity.findViewById<RelativeLayout>(R.id.winPopup)
+                        winPopup.visibility = View.VISIBLE
+                        val animation: Animation = AnimationUtils.loadAnimation(
+                            parent.context,
+                            R.anim.fade_in
+                        )
+                        winPopup.startAnimation(animation);
+                    }
 
                 }
-
-                // Get the activity reference from parent
-                val activity = parent.context as Activity
-
-                // Get the activity root view
-                val viewGroup = activity.findViewById<ViewGroup>(android.R.id.content)
-                    .getChildAt(0)
-
-                // Change the root layout background color
-//               viewGroup.setBackgroundColor(Color.parseColor("#b5d6e1"))
             }
         }
         // Finally, return the view
         return view
+
     }
     /*
         **** reference source developer.android.com ***

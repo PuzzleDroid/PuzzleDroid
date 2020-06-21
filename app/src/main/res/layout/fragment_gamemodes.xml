@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background"
+    tools:context=".ui.home.HomeFragment">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:gravity="center"
+                android:src="@mipmap/name" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textViewMode1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_column="0"
+                android:layout_marginTop="30dp"
+                android:soundEffectsEnabled="true"
+                android:text="Mode 1"
+                android:fontFamily="@font/baby_monsta"
+                android:textColor="#FFFFFF"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textViewMode2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_column="0"
+                android:layout_marginTop="30dp"
+                android:soundEffectsEnabled="true"
+                android:text="Mode 2"
+                android:fontFamily="@font/baby_monsta"
+                android:textColor="#FFFFFF"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textViewMode3"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_column="0"
+                android:layout_marginTop="30dp"
+                android:soundEffectsEnabled="true"
+                android:text="Mode 3"
+                android:fontFamily="@font/baby_monsta"
+                android:textColor="#FFFFFF"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textViewMode4"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_column="0"
+                android:layout_marginTop="30dp"
+                android:soundEffectsEnabled="true"
+                android:text="Mode 4"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/baby_monsta"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+
+        </TableRow>
+    </TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
