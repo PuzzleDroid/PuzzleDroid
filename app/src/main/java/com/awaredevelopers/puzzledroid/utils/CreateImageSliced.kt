@@ -46,7 +46,7 @@ object CreateImageSliced {
 
         val nPuzzle: MutableList<NPuzzlePortion> = ArrayList<NPuzzlePortion>()
 
-        val level = 1 //TODO Obtener el nivel como parámetro. El lvl debe tenerlo la clase NPuzzle
+        val level = 3 //TODO Obtener el nivel como parámetro. El lvl debe tenerlo la clase NPuzzle
 
         // Number of rows and columns
         var cols = 0

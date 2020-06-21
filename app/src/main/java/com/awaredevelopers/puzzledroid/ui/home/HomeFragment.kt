@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.awaredevelopers.puzzledroid.ui.nPuzzle.NPuzzleActivity
 import com.awaredevelopers.puzzledroid.R
+import java.lang.System.exit
+import kotlin.system.exitProcess
 
 class HomeFragment : Fragment() {
 
@@ -39,7 +42,7 @@ class HomeFragment : Fragment() {
                 }*/
 
 
-        root.findViewById<ImageButton>(R.id.predefined).setOnClickListener {
+        root.findViewById<ImageView>(R.id.start).setOnClickListener {
 //            Para navegar a los diferentes fragments desde cualquier punto del contenedor.
 //            findNavController().navigate(R.id.action_HomeFragment_to_PuzzleFragment)
             val intent = Intent(context, NPuzzleActivity::class.java).apply {
@@ -47,24 +50,18 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        root.findViewById<ImageButton>(R.id.camera).setOnClickListener {
+        root.findViewById<ImageView>(R.id.score).setOnClickListener {
             val intent = Intent(context, NPuzzleActivity::class.java).apply {
             }
             startActivity(intent)
         }
 
-        root.findViewById<ImageButton>(R.id.galery).setOnClickListener {
+        root.findViewById<ImageView>(R.id.exit).setOnClickListener {
+            exitProcess(0)
 
-            val intent = Intent(context, NPuzzleActivity::class.java).apply {
-            }
-            startActivity(intent)
         }
 
-        root.findViewById<ImageButton>(R.id.online).setOnClickListener {
-            val intent = Intent(context, NPuzzleActivity::class.java).apply {
-            }
-            startActivity(intent)
-        }
+
         return root
     }
 }

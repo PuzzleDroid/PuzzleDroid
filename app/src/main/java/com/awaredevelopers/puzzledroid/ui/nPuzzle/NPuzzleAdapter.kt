@@ -2,6 +2,8 @@ package com.awaredevelopers.puzzledroid.ui.nPuzzle
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.util.Log.i
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,16 +11,19 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat.startActivity
 import com.awaredevelopers.puzzledroid.utility.NPuzzleRules
 import com.awaredevelopers.puzzledroid.R
+import com.awaredevelopers.puzzledroid.ui.home.HomeFragment
 import com.awaredevelopers.puzzledroid.utils.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import java.util.*
+import kotlin.coroutines.coroutineContext
 
 class NPuzzleAdapter() : BaseAdapter(){
     private lateinit var nPuzzleList:MutableList<NPuzzlePortion>
     private lateinit var list: List<NPuzzlePortion>
     private var isFirstRun = true
-
     constructor (nPuzzleList: List<NPuzzlePortion>): this(){
         this.nPuzzleList = nPuzzleList as MutableList<NPuzzlePortion>
         this.list = nPuzzleList
@@ -43,6 +48,7 @@ class NPuzzleAdapter() : BaseAdapter(){
         val gridPiece = view.findViewById<ImageView>(R.id.gridPiece)
         val cardContainer = view.findViewById<CardView>(R.id.cardContainer)
 
+
         // Display drawable on ImageView
         gridPiece.setImageDrawable(list[position].drawable)
 
@@ -60,15 +66,17 @@ class NPuzzleAdapter() : BaseAdapter(){
                 isFirstRun = false
 
             } else {
-                Toast.makeText(
+               /* Toast.makeText(
                     parent.context, "Position= ${getItemId(position)}\n ${list[position].toString()}", Toast.LENGTH_SHORT
-                ).show()
+                ).show()*/
 
                 Collections.swap(list, position, NPuzzleRules.getEmptySpace(position, list, list[position].numCols));
                 notifyDataSetChanged()
 
                 if(NPuzzleRules.getCorrectorder(list)){
-                    println("-------------------------------> Auuuu! You win")
+
+                  println("-------------->You Win")
+
                 }
 
                 // Get the activity reference from parent
