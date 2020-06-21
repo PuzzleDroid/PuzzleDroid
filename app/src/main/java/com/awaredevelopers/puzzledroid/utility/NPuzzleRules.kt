@@ -1,27 +1,33 @@
 package com.awaredevelopers.puzzledroid.utility
 
-import com.awaredevelopers.puzzledroid.utils.NPuzzlePortion
+import android.util.Log
 
 object NPuzzleRules {
+    private val TAG = "NPuzzleRules"
+
     fun getEmptySpace(position: Int, list: List<NPuzzlePortion>, numCols: Int): Int {
-        var right = true;
-        var left = true;
-        var top = true;
-        var bottom = true;
+        var right = true
+        var left = true
+        var top = true
+        var bottom = true
 
         if(list[position].id == -1){
             return position
         }
         if(position < numCols){
+            Log.d(TAG, "Estamos arriba")
             top = false
         }
         if((position + 1)%numCols == 0){
+            Log.d(TAG, "Estamos a la derecha")
             right = false
         }
         if(position == 0 || position%numCols == 0){
+            Log.d(TAG, "Estamos a la izquierda")
             left = false
         }
         if(!(list.size >= position + 1 && position + 1 <= (list.size - numCols))) {
+            Log.d(TAG, "Estamos abajo")
             bottom = false
         }
 
@@ -39,15 +45,15 @@ object NPuzzleRules {
         }
         return position
     }
-    fun getCorrectorder(list: List<NPuzzlePortion>): Boolean {
+    fun isCorrectOrder(list: List<NPuzzlePortion>): Boolean {
         for (i in 0 until list.size - 1) {
             if (list[i].id == i) {
-                println("Pieza " + list[i].id + " en orden correcto")
+                Log.d(TAG, "Pieza " + list[i].id + " en orden correcto")
                 if (i == list.size - 2) {
                     return true
                 }
             } else {
-                return false
+                break
             }
         }
         return false

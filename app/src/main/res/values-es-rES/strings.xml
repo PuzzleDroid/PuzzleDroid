@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PuzzleDroid</string>
     <string name="navigation_drawer_open">Abrir navegador</string>
     <string name="navigation_drawer_close">Cerrar Navegador</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="menu_home">Puzzle Droid</string>
-    <string name="menu_gallery">Galeria</string>
-    <string name="menu_slideshow">Slideshow</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+
+    <string name="action_settings">Configuración</string>
+
+    <string name="menu_home">PuzzleDroid</string>
+    <string name="menu_scores">Puntuaciones</string>
+    <string name="menu_settings">Configuración</string>
     <string name="menu_help">Ayuda</string>
+
+    <string name="mode_preloaded_img">NPuzzle clásico</string>
+    <string name="mode_random_gallery_img">NPuzzle con imágenes de tu dispositivo</string>
+    <string name="mode_cam_picture_img">NPuzzle tomando una foto con tu dispositivo</string>
+    <string name="mode_firebase_img">NPuzzle con imágenes online</string>
+
+    <string name="button_next_lvl">Continuar</string>
+    <string name="button_back_menu">Salir</string>
 </resources>

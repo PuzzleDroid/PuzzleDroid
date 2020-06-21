@@ -12,34 +12,54 @@
         tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_HomeFragment_to_PuzzleFragment"
-            app:destination="@id/nav_puzzle" />
+            android:id="@+id/action_HomeFragment_to_ScoresFragment"
+            app:destination="@id/nav_scores" />
         <action
-            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
-            app:destination="@id/nav_slideshow" />
+            android:id="@+id/action_HomeFragment_to_SettingsFragment"
+            app:destination="@id/nav_settings" />
+        <action
+            android:id="@+id/action_HomeFragment_to_HelpFragment"
+            app:destination="@id/nav_help" />
+        <action
+            android:id="@+id/action_HomeFragment_to_GameModesFragment"
+            app:destination="@id/nav_gamesmodes" />
     </fragment>
+
+<!--    <fragment-->
+<!--        android:id="@+id/nav_home_help"-->
+<!--        android:name="com.awaredevelopers.puzzledroid.ui.help.HelpFragment"-->
+<!--        android:label="@string/menu_help"-->
+<!--        tools:layout="@layout/fragment_help">-->
+<!--        <action-->
+<!--            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"-->
+<!--            app:destination="@id/nav_home" />-->
+
+<!--        <argument-->
+<!--            android:name="myArg"-->
+<!--            app:argType="string" />-->
+<!--    </fragment>-->
+
     <fragment
-        android:id="@+id/nav_home_help"
+        android:id="@+id/nav_scores"
+        android:name="com.awaredevelopers.puzzledroid.ui.scores.ScoresFragment"
+        android:label="@string/menu_scores"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.awaredevelopers.puzzledroid.ui.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/nav_gamesmodes"
+        android:name="com.awaredevelopers.puzzledroid.ui.gameModes.GameModesFragment"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/nav_help"
         android:name="com.awaredevelopers.puzzledroid.ui.help.HelpFragment"
         android:label="@string/menu_help"
-        tools:layout="@layout/fragment_help">
-        <action
-            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
-            app:destination="@id/nav_home" />
+        tools:layout="@layout/fragment_help" />
 
-        <argument
-            android:name="myArg"
-            app:argType="string" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.awaredevelopers.puzzledroid.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-
-    <fragment
-        android:id="@+id/nav_puzzle"
-        android:name="com.awaredevelopers.puzzledroid.ui.puzzle.PuzzleFragment"
-        tools:layout="@layout/fragment_puzzle" />
 </navigation>
