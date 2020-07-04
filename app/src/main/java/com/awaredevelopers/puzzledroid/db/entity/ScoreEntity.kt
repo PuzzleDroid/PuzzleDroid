@@ -1,26 +1,30 @@
 package com.awaredevelopers.puzzledroid.db.entity
 
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
+import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "scores")
-class ScoreEntity(val scoreParam: Int, val levelParam: Int) {
+class ScoreEntity() {
     @PrimaryKey(autoGenerate = true)
-    private var id: Int = 0
-    private var score: Int = 0
+    @NotNull
+    private var id: Long = 0
+    @ColumnInfo(defaultValue = "0")
+    @NotNull
     private var level: Int = 0
-
-    init {
-        setScore(scoreParam)
-        setLevel(levelParam)
-    }
+    @ColumnInfo(defaultValue = "0")
+    @NotNull
+    private var score: Int = 0
+    @NotNull
+    private var nickname: String = ""
     
-    fun getId(): Int {
+    fun getId(): Long {
         return id
     }
 
-    fun setId(id: Int) {
+    fun setId(id: Long) {
         this.id = id
     }
 
@@ -38,5 +42,13 @@ class ScoreEntity(val scoreParam: Int, val levelParam: Int) {
 
     fun setLevel(level: Int) {
         this.level = level
+    }
+
+    fun getNickname(): String {
+        return this.nickname
+    }
+
+    fun setNickname(nickname: String) {
+        this.nickname = nickname
     }
 }

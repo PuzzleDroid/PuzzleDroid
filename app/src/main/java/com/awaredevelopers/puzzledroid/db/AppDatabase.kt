@@ -18,7 +18,6 @@ abstract class AppDatabase : RoomDatabase() {
     // abstract var sInstance: AppDatabase
 
     abstract fun scoreDao(): ScoreDao
-
     /**
     private val mIsDatabaseCreated = MutableLiveData<Boolean>()
 
@@ -59,7 +58,7 @@ abstract class AppDatabase : RoomDatabase() {
                     })
                 }
             })
-            .addMigrations(MIGRATION_1_2)
+            //.addMigrations(MIGRATION_1_2)
             .build()
     }
 
@@ -107,6 +106,7 @@ abstract class AppDatabase : RoomDatabase() {
                         + "SELECT `id`, `name`, `description` FROM products"
             )
         }
-    }**/
+    }
     **/
+     **/
 }
