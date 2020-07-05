@@ -8,7 +8,7 @@ import com.awaredevelopers.puzzledroid.utility.DATABASE_NAME
 import com.awaredevelopers.puzzledroid.db.dao.ScoreDao
 import com.awaredevelopers.puzzledroid.db.entity.ScoreEntity
 
-
+// https://github.com/android/sunflower/blob/master/app/src/main/java/com/google/samples/apps/sunflower/data/AppDatabase.kt
 @Database(entities = [ScoreEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun scoreDao(): ScoreDao
