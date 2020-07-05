@@ -21,7 +21,7 @@ open abstract class NPuzzle {
 
     protected constructor(applicationContext: Context, gameMode: GameMode){
         this. id = 1
-        this.level = 2
+        this.level = 1
         this.context = applicationContext
         setRowsAndCols(level)
         this.gameMode = gameMode

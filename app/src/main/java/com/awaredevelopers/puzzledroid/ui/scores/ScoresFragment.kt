@@ -10,7 +10,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
-import androidx.room.Room
 import com.awaredevelopers.puzzledroid.R
 import com.awaredevelopers.puzzledroid.db.AppDatabase
 import com.awaredevelopers.puzzledroid.db.entity.ScoreEntity
@@ -23,10 +22,7 @@ class ScoresFragment : Fragment() {
     fun loadScores() : LiveData<List<ScoreEntity>> {
         val applicationContext = requireContext().getApplicationContext()
 
-        val db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "database-name"
-        ).createFromAsset("database/puzzledroid.db").build()
+        val db = AppDatabase.getInstance(applicationContext)
 
         return db.scoreDao().loadLiveScores()
     }
@@ -52,7 +48,7 @@ class ScoresFragment : Fragment() {
             scores.forEach {
                 if (scoresSorted.isNotEmpty()) {
                     for (index in 0 until scoresSorted.size) {
-                        if (it.getScore() < scoresSorted.get(index).getScore()) {
+                        if (it.score < scoresSorted.get(index).score) {
                             scoresSorted.add(index, it)
                             break
                         }
@@ -71,7 +67,7 @@ class ScoresFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            val scores = loadScores().observe(viewLifecycleOwner, Observer {
+            loadScores().observe(viewLifecycleOwner, Observer {
                 scoresAdapter.setScores(orderScores(it))
             })
         }

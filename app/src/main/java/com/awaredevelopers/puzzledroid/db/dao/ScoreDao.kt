@@ -13,12 +13,6 @@ interface ScoreDao {
     @Query("Select * FROM scores")
     fun loadLiveScores(): LiveData<List<ScoreEntity>>
 
-    @Query("Select * FROM scores")
-    fun loadAllScores(): List<ScoreEntity>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertScore(score: ScoreEntity) : Long
-
-    // @Insert
-    // fun insertAll(scores: List<ScoreEntity>)
+    suspend fun insertScore(score: ScoreEntity) : Long
 }

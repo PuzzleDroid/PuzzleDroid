@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_npuzzle.*
 
 class NPuzzleActivity : AppCompatActivity() {
     private val TAG = "NPuzzleActivity"
-    private lateinit var nPuzzle: NPuzzle
+    lateinit var nPuzzle: NPuzzle
     lateinit var chronometer: Chronometer
     private var chronoLastStopTime = 0L
 
@@ -45,7 +45,6 @@ class NPuzzleActivity : AppCompatActivity() {
         // Starts chronometer
         chronometer = findViewById<Chronometer>(R.id.chronometer)
         chronometer.start()
-
     }
 
     override fun onPause() {

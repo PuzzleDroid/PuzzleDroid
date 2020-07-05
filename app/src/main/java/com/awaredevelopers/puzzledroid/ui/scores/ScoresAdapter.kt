@@ -38,9 +38,9 @@ class ScoresAdapter(private val context: Context) : BaseAdapter() {
 
         val score = getItem(position) as ScoreEntity
 
-        timeTextView.text = score.getScore().toString()
-        levelTextView.text = score.getLevel().toString()
-        nicknameTextView.text = score.getNickname()
+        timeTextView.text = score.score.toString()
+        levelTextView.text = score.level.toString()
+        nicknameTextView.text = score.nickname
 
         return rowView
     }
