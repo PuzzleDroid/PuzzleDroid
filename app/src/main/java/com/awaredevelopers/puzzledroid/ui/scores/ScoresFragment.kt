@@ -75,9 +75,3 @@ class ScoresFragment : Fragment() {
         return root
     }
 }
-/*
-TableInfo{name='scores', columns={nickname=Column{name='nickname', type='TEXT', affinity='2', notNull=false, primaryKeyPosition=0, defaultValue='null'}, score=Column{name='score', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0, defaultValue='0'}, id=Column{name='id', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=1, defaultValue='null'}, level=Column{name='level', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0, defaultValue='0'}}, foreignKeys=[], indices=[]}
-
-TableInfo{name='scores', columns={nickname=Column{name='nickname', type='TEXT', affinity='2', notNull=true, primaryKeyPosition=0, defaultValue='null'}, score=Column{name='score', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0, defaultValue='0'}, level=Column{name='level', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0, defaultValue='0'}, id=Column{name='id', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=1, defaultValue='null'}}, foreignKeys=[], indices=[]}
-
- */

@@ -39,21 +39,6 @@ class HomeFragment : Fragment() {
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
-        /*val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-
-            //TODO quitar el click listener...
-            textView.setOnClickListener{
-                val sdf = SimpleDateFormat("ss")
-                val currentDate = Integer.parseInt(sdf.format(Date()))
-                println(" C DATE is  $currentDate")
-                if( textView.text != "Pinto un texto"){
-                    textView.text = "Pinto un texto"
-                } else {
-                    textView.text = "Pinot otro texto!!!!!"
-                }*/
-
         root.findViewById<ImageView>(R.id.start).setOnClickListener {
             findNavController().navigate(R.id.action_HomeFragment_to_GameModesFragment)
         }
