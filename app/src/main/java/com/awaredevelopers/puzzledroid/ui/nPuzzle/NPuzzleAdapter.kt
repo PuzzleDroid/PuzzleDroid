@@ -169,7 +169,7 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
             Object : The data at the specified position.
     */
     override fun getItem(position: Int): Any? {
-        return list[position]
+        return list[position] 
     }
     /*
         **** reference source developer.android.com ***
