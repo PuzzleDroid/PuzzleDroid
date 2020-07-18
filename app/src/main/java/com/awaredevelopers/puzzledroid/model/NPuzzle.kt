@@ -1,15 +1,21 @@
 package com.awaredevelopers.puzzledroid.model
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.provider.MediaStore
+import androidx.appcompat.app.AppCompatActivity
 import com.awaredevelopers.puzzledroid.utility.NPuzzlePortion
 
-open abstract class NPuzzle {
+open abstract class NPuzzle : AppCompatActivity{
     protected enum class GameMode {
         PRELOADED_IMG,
         RANDOM_GALLERY_IMG,
         CAM_PICTURE_IMG,
         FIREBASE_IMG;
     }
+
 
     protected var context: Context
     protected var cols = 0
@@ -37,4 +43,5 @@ open abstract class NPuzzle {
     }
 
     protected abstract fun createNPuzzlePortions(): List<NPuzzlePortion>
+
 }
