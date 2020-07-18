@@ -47,11 +47,14 @@ object NPuzzleRules {
     }
     fun isCorrectOrder(list: List<NPuzzlePortion>): Boolean {
         for (i in 0 until list.size - 1) {
-            if (list[i].id == i) {
-                Log.d(TAG, "Pieza " + list[i].id + " en orden correcto")
-                if (i == list.size - 2) {
-                    return true
-                }
+                //DEBUG
+            if(list[0].id == 0){
+                return true
+//            if (list[i].id == i) {
+//                Log.d(TAG, "Pieza " + list[i].id + " en orden correcto")
+//                if (i == list.size - 2) {
+//                    return true
+//                }
             } else {
                 break
             }

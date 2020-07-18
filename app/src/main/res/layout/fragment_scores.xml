@@ -13,6 +13,17 @@
         android:layout_height="wrap_content" >
 
         <TextView
+            android:id="@+id/score_imgName"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="30dip"
+            android:paddingHorizontal="20dip"
+            android:textColor="#CC0033"
+            android:textSize="24sp"
+            android:text="Level"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
             android:id="@+id/score_level"
             android:layout_width="120dp"
             android:layout_height="wrap_content"

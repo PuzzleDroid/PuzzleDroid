@@ -3,7 +3,9 @@ package com.awaredevelopers.puzzledroid.ui.nPuzzle
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.os.SystemClock
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +21,12 @@ import com.awaredevelopers.puzzledroid.db.entity.ScoreEntity
 import com.awaredevelopers.puzzledroid.model.NPuzzle
 import com.awaredevelopers.puzzledroid.utility.NPuzzlePortion
 import com.awaredevelopers.puzzledroid.utility.NPuzzleRules
+import com.awaredevelopers.puzzledroid.utility.TimeUtil
 import kotlinx.android.synthetic.main.activity_npuzzle.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.coroutines.CoroutineContext
 
@@ -130,12 +136,14 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
                             R.anim.fade_in
                         )
                         winPopup.startAnimation(animation);
-
                         val score = ScoreEntity(
                             nPuzzle.level,
-                            nPuzzleActivity.chronometer.getBase().toInt(),
-                            ""
+                            (SystemClock.elapsedRealtime() - nPuzzleActivity.chronometer.base).toInt(),
+                            "FALTA_NICK!",
+                            nPuzzle.imgName
                         )
+
+
 
                         // Insert a score
                         suspend fun insertScore(score: ScoreEntity) {
@@ -169,7 +177,7 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
             Object : The data at the specified position.
     */
     override fun getItem(position: Int): Any? {
-        return list[position] 
+        return list[position]
     }
     /*
         **** reference source developer.android.com ***

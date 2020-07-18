@@ -5,6 +5,15 @@
     android:layout_height="fill_parent" >
 
     <TextView
+        android:id="@+id/score_imgName"
+        android:layout_width="120dip"
+        android:layout_height="wrap_content"
+        android:paddingVertical="30dip"
+        android:paddingHorizontal="20dip"
+        android:textColor="#CC0033"
+        android:textSize="24sp" />
+
+    <TextView
         android:id="@+id/score_level"
         android:layout_width="120dip"
         android:layout_height="wrap_content"

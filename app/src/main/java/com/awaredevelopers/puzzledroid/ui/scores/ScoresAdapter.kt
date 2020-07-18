@@ -8,6 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.awaredevelopers.puzzledroid.R
 import com.awaredevelopers.puzzledroid.db.entity.ScoreEntity
+import com.awaredevelopers.puzzledroid.utility.TimeUtil
 
 class ScoresAdapter(private val context: Context) : BaseAdapter() {
     private val inflater: LayoutInflater
@@ -32,15 +33,17 @@ class ScoresAdapter(private val context: Context) : BaseAdapter() {
         val rowView = inflater.inflate(R.layout.list_item_score, parent, false)
 
         // Get title element
+        val imgNameTextView = rowView.findViewById(R.id.score_imgName) as TextView
         val timeTextView = rowView.findViewById(R.id.score_time) as TextView
         val levelTextView = rowView.findViewById(R.id.score_level) as TextView
         val nicknameTextView = rowView.findViewById(R.id.score_nickname) as TextView
 
         val score = getItem(position) as ScoreEntity
 
-        timeTextView.text = score.score.toString()
+        timeTextView.text = TimeUtil.millisec2hhmmss(score.score.toLong())
         levelTextView.text = score.level.toString()
         nicknameTextView.text = score.nickname
+        imgNameTextView.text = score.imgName
 
         return rowView
     }

@@ -14,7 +14,9 @@ class ScoreEntity(
     @NotNull
     var score: Int,
     @NotNull
-    var nickname: String
+    var nickname: String,
+    @NotNull
+    var imgName: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0

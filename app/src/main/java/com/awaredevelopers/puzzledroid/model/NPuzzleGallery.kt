@@ -24,7 +24,12 @@ import org.slf4j.IMarkerFactory
 import java.security.AccessControlContext
 import java.security.AccessController.getContext
 
-class NPuzzleGallery(applicationContext: Context): NPuzzle(applicationContext, GameMode.RANDOM_GALLERY_IMG) {
+class NPuzzleGallery(applicationContext: Context, bmp: Bitmap): NPuzzle(applicationContext, GameMode.RANDOM_GALLERY_IMG) {
+
+    lateinit var bmp: Bitmap
+    init{
+        this.bmp = bmp
+    }
 
     override fun createNPuzzlePortions(): List<NPuzzlePortion> {
 
@@ -39,7 +44,6 @@ class NPuzzleGallery(applicationContext: Context): NPuzzle(applicationContext, G
 
         //Gallery image
         lateinit var bmp: Bitmap;
-
 
     }
 

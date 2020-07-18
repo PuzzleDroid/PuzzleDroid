@@ -16,7 +16,7 @@ open abstract class NPuzzle : AppCompatActivity{
         FIREBASE_IMG;
     }
 
-
+    var imgName: String
     protected var context: Context
     protected var cols = 0
     protected var rows = 0
@@ -27,6 +27,7 @@ open abstract class NPuzzle : AppCompatActivity{
 
     protected constructor(applicationContext: Context, gameMode: GameMode){
         this. id = 1
+        this.imgName = ""
         this.level = 1
         this.context = applicationContext
         setRowsAndCols(level)
