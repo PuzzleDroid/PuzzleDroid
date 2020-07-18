@@ -1,5 +1,7 @@
 package com.awaredevelopers.puzzledroid.ui.home
 
+import kotlinx.coroutines.*
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,17 +10,25 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.room.Room
 import com.awaredevelopers.puzzledroid.ui.nPuzzle.NPuzzleActivity
 import com.awaredevelopers.puzzledroid.R
 import com.awaredevelopers.puzzledroid.ui.gameModes.GameModesFragment
 import java.lang.System.exit
 import kotlin.system.exitProcess
+import com.awaredevelopers.puzzledroid.db.AppDatabase
+import com.awaredevelopers.puzzledroid.db.dao.ScoreDao
+import com.awaredevelopers.puzzledroid.db.entity.ScoreEntity
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var scoreList: List<ScoreEntity>
 
     override fun onCreateView(
             inflater: LayoutInflater,

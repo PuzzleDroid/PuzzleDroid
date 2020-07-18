@@ -3,7 +3,6 @@ package com.awaredevelopers.puzzledroid.ui.nPuzzle
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
-import android.database.DataSetObserver
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,24 +14,33 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.cardview.widget.CardView
 import com.awaredevelopers.puzzledroid.R
+import com.awaredevelopers.puzzledroid.db.AppDatabase
+import com.awaredevelopers.puzzledroid.db.entity.ScoreEntity
 import com.awaredevelopers.puzzledroid.model.NPuzzle
 import com.awaredevelopers.puzzledroid.utility.NPuzzlePortion
 import com.awaredevelopers.puzzledroid.utility.NPuzzleRules
 import kotlinx.android.synthetic.main.activity_npuzzle.*
+import kotlinx.coroutines.*
 import java.util.*
+import kotlin.coroutines.CoroutineContext
 
 
 /**
  * Custom Adapter. It allows to control what is painted in the GridView as well as its behavior.
  * The main object is the nPuzzleList collection with sliced pieces of the NPuzzle.
  */
-class NPuzzleAdapter() : BaseAdapter(){
+class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
     private lateinit var nPuzzleList:MutableList<NPuzzlePortion>
     private lateinit var list: List<NPuzzlePortion>
     private lateinit var nPuzzle: NPuzzle
     private var isFirstRun = true
     private var isSolved = false
     private var movementsCounter = 0
+
+    private var job: Job = Job()
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
 
     constructor (nPuzzle: NPuzzle): this(){
         this.nPuzzleList = nPuzzle.nPuzzlePortions as MutableList<NPuzzlePortion>
@@ -122,8 +130,26 @@ class NPuzzleAdapter() : BaseAdapter(){
                             R.anim.fade_in
                         )
                         winPopup.startAnimation(animation);
-                    }
 
+                        val score = ScoreEntity(
+                            nPuzzle.level,
+                            nPuzzleActivity.chronometer.getBase().toInt(),
+                            ""
+                        )
+
+                        // Insert a score
+                        suspend fun insertScore(score: ScoreEntity) {
+                            val applicationContext = parent.context.getApplicationContext()
+
+                            val db = AppDatabase.getInstance(applicationContext)
+
+                            db.scoreDao().insertScore(score)
+                        }
+
+                        launch {
+                            insertScore(score)
+                        }
+                    }
                 }
             }
         }
@@ -143,7 +169,7 @@ class NPuzzleAdapter() : BaseAdapter(){
             Object : The data at the specified position.
     */
     override fun getItem(position: Int): Any? {
-        return list[position]
+        return list[position] 
     }
     /*
         **** reference source developer.android.com ***
