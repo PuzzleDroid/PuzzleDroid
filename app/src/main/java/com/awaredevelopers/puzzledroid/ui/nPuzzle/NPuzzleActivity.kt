@@ -1,9 +1,8 @@
 package com.awaredevelopers.puzzledroid.ui.nPuzzle
 
-import android.app.Activity
-import android.content.Intent
+import android.R.attr.data
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.os.SystemClock
 import android.provider.MediaStore
@@ -11,10 +10,10 @@ import android.util.Log
 import android.view.View
 import android.widget.Chronometer
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation.findNavController
 import com.awaredevelopers.puzzledroid.R
 import com.awaredevelopers.puzzledroid.model.*
 import kotlinx.android.synthetic.main.activity_npuzzle.*
+
 
 class NPuzzleActivity : AppCompatActivity() {
     private val TAG = "NPuzzleActivity"
@@ -31,11 +30,13 @@ class NPuzzleActivity : AppCompatActivity() {
 
         when(intent.extras?.getInt("GameModeKey")) {
             1 -> nPuzzle = NPuzzlePreloaded(applicationContext)
-            2 -> nPuzzle = NPuzzleGallery(applicationContext, intent.extras!!.get("bmp") as Bitmap)
-            3 -> nPuzzle = NPuzzleCam(applicationContext)
+            2 -> nPuzzle = NPuzzleGallery(applicationContext, MediaStore.Images.Media.getBitmap(contentResolver, Uri.parse(intent.extras?.getString("imageUri"))))
+            3 -> nPuzzle = NPuzzleCam(applicationContext,
+                (intent.extras?.get("data") as Bitmap)!! )
             4 -> nPuzzle = NPuzzleFirebase(applicationContext)
             else ->  Log.d(TAG, "MODE SELECTED OUT OF RANGE!")
         }
+
         val nPuzzleList = nPuzzle.nPuzzlePortions
 
         // Get an instance of base adapter
@@ -80,10 +81,7 @@ class NPuzzleActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
     fun buttonBackMenu(view: View) {
-        //TODO que no muestre el splash de carga al volver al menu inicial
-        findNavController(view).navigate(R.id.nav_home)
-//        val intent = Intent(parent.applicationContext, HomeFragment::class.java)
-//        startActivity(intent)
+        onBackPressed()
     }
 
     fun buttonNextLevel(view: View) {

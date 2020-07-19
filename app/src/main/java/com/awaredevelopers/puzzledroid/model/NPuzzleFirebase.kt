@@ -5,7 +5,7 @@ import android.graphics.BitmapFactory
 import com.awaredevelopers.puzzledroid.utility.ImageUtil.getListImageSliced
 import com.awaredevelopers.puzzledroid.utility.NPuzzlePortion
 
-class NPuzzleFirebase(applicationContext: Context): NPuzzle(applicationContext, GameMode.FIREBASE_IMG) {
+class NPuzzleFirebase(applicationContext: Context): NPuzzle( applicationContext, GameMode.FIREBASE_IMG) {
 
     override fun createNPuzzlePortions(): List<NPuzzlePortion> {
         setRowsAndCols(1)
