@@ -1,10 +1,9 @@
 package com.awaredevelopers.puzzledroid.model
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.provider.MediaStore
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import com.awaredevelopers.puzzledroid.utility.NPuzzlePortion
 
@@ -23,15 +22,35 @@ open abstract class NPuzzle : AppCompatActivity{
     var id = 0
     var level = 0
     private var gameMode: GameMode
+    protected var bitmap: Bitmap
     var nPuzzlePortions: List<NPuzzlePortion>
 
-    protected constructor(applicationContext: Context, gameMode: GameMode){
+    protected constructor(
+        applicationContext: Context,
+        gameMode: GameMode
+    ){
         this. id = 1
         this.imgName = ""
         this.level = 1
         this.context = applicationContext
         setRowsAndCols(level)
         this.gameMode = gameMode
+        this.bitmap = BitmapFactory.decodeStream(context.assets.open("preloaded_npuzzle_img/ny_west_44th_street.jpg"))
+        this.nPuzzlePortions = createNPuzzlePortions()
+    }
+
+    protected constructor(
+        applicationContext: Context,
+        gameMode: GameMode,
+        bitmap: Bitmap
+    ){
+        this. id = 1
+        this.imgName = ""
+        this.level = 1
+        this.context = applicationContext
+        setRowsAndCols(level)
+        this.gameMode = gameMode
+        this.bitmap = bitmap
         this.nPuzzlePortions = createNPuzzlePortions()
     }
 

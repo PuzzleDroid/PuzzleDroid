@@ -6,7 +6,7 @@ import com.awaredevelopers.puzzledroid.utility.ImageUtil.getListImageSliced
 import com.awaredevelopers.puzzledroid.utility.NPuzzlePortion
 import java.util.*
 
-class NPuzzlePreloaded(applicationContext: Context): NPuzzle(applicationContext, GameMode.PRELOADED_IMG) {
+class NPuzzlePreloaded(applicationContext: Context): NPuzzle( applicationContext, GameMode.PRELOADED_IMG) {
 
     override fun createNPuzzlePortions(): List<NPuzzlePortion> {
         var givenList = context.assets.list("preloaded_npuzzle_img")?.toMutableList()
