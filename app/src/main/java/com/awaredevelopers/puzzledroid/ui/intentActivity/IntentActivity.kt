@@ -15,7 +15,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import com.awaredevelopers.puzzledroid.ui.nPuzzle.NPuzzleActivity
 import java.io.File
 import java.io.IOException
@@ -23,8 +22,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class IntentActivity : AppCompatActivity() {
-    private lateinit var gameMode: String
+
+
     private val TAG = "NPuzzleIntent"
+    private lateinit var gameMode: String
     val IMAGE_PICK_CODE = 1000
     val REQUEST_CAMERA= 1002
 

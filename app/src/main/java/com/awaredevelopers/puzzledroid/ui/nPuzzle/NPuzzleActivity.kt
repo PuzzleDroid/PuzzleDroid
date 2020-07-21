@@ -40,7 +40,7 @@ class NPuzzleActivity : AppCompatActivity() {
         val nPuzzleList = nPuzzle.nPuzzlePortions
 
         // Get an instance of base adapter
-        val adapter = NPuzzleAdapter(nPuzzle)
+        val adapter = NPuzzleAdapter(nPuzzle, this)
 
         // Set the grid view adapter
         nPuzzleGridView.adapter = adapter

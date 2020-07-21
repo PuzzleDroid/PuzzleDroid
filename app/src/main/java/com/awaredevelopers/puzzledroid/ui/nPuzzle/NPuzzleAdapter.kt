@@ -3,6 +3,7 @@ package com.awaredevelopers.puzzledroid.ui.nPuzzle
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.os.Handler
 import android.os.SystemClock
 import android.util.Log
 import android.view.KeyEvent
@@ -42,16 +43,23 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
     private var isFirstRun = true
     private var isSolved = false
     private var movementsCounter = 0
+    private lateinit var anim: Animation
 
     private var job: Job = Job()
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
-    constructor (nPuzzle: NPuzzle): this(){
+    constructor (nPuzzle: NPuzzle, context: Context): this(){
         this.nPuzzleList = nPuzzle.nPuzzlePortions as MutableList<NPuzzlePortion>
         this.list = nPuzzle.nPuzzlePortions
         this.nPuzzle = nPuzzle
+
+        //TODO animaciones no funcionan si hacemos un notifyDataSetChanged()
+        anim = AnimationUtils.loadAnimation(
+            context,
+            R.anim.fade_in
+        )
     }
 
     companion object{
@@ -93,11 +101,6 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
                     notifyDataSetChanged()
                     isFirstRun = false
                 } else {
-                    //Toast to popup a debug msg with detailed information.
-//                Toast.makeText(
-//                    parent.context, "Position= ${getItemId(position)}\n ${list[position].toString()}", Toast.LENGTH_SHORT
-//                ).show()
-
                     Log.d(TAG, "Movement #${++movementsCounter}")
 
                     //On click swap the content between two pieces if the piece with the "empty space" is in the right position.
@@ -107,7 +110,7 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
                         NPuzzleRules.getEmptySpace(position, list, list[position].numCols)
                     )
 
-                    //TODO animaciones no funcionan si hacemos un notifyDataSetChanged()
+//                    //TODO animaciones no funcionan si hacemos un notifyDataSetChanged()
 //                    val anim = AnimationUtils.loadAnimation(
 //                        view.context,
 //                        R.anim.fade_in
@@ -116,7 +119,16 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
 //                    view.animation = anim
 //                    anim.start()
 
-                    notifyDataSetChanged()
+
+//                    anim.startOffset = (position * 500).toLong()
+                    cardContainer.animation = anim
+                    anim.start()
+
+                    Handler().postDelayed({
+                        notifyDataSetChanged()
+                        anim.reset()
+                    }, 1000)
+
 
                     //Incremental check to verify if the NPuzzle was solved.
                     if (NPuzzleRules.isCorrectOrder(list)) {
