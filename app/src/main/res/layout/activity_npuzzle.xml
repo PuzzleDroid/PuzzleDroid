@@ -4,7 +4,8 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@android:color/transparent" >
 
     <GridView
         android:id="@+id/nPuzzleGridView"
@@ -16,6 +17,9 @@
         android:horizontalSpacing="0dp"
         android:stretchMode="columnWidth"
         android:layout_centerInParent="true"
+        android:background="@android:color/transparent"
+        android:hapticFeedbackEnabled="true"
+        android:outlineAmbientShadowColor="@color/material_on_background_disabled"
         />
     <Chronometer
 

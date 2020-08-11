@@ -5,7 +5,8 @@ import android.util.Log
 object NPuzzleRules {
     private val TAG = "NPuzzleRules"
 
-    fun getEmptySpace(position: Int, list: List<NPuzzlePortion>, numCols: Int): Int {
+    fun getEmptySpace(position: Int, list: List<NPuzzlePortion>): Int {
+        var numCols = list[position].numCols
         var right = true
         var left = true
         var top = true
