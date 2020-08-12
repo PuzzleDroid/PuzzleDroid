@@ -82,7 +82,6 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
         // Display drawable on ImageView
         gridPiece.setImageDrawable(list[position].drawable)
         cardContainer.setOnClickListener{
-
             if (!isSolved) {
                 if (isFirstRun) {
                     //On first click we replace the last piece with a blank one, shuffle and repaint.

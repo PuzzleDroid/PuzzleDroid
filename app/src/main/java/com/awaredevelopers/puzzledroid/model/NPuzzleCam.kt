@@ -12,7 +12,8 @@ import com.awaredevelopers.puzzledroid.utility.ImageUtil
 import com.awaredevelopers.puzzledroid.utility.ImageUtil.getListImageSliced
 import com.awaredevelopers.puzzledroid.utility.NPuzzlePortion
 
-class NPuzzleCam(applicationContext: Context, bmp: Bitmap): NPuzzle( applicationContext, GameMode.CAM_PICTURE_IMG, bmp) {
+class NPuzzleCam(applicationContext: Context, bmp: Bitmap): NPuzzle(
+    applicationContext, GameMode.CAM_PICTURE_IMG, bmp) {
 
     override fun createNPuzzlePortions(): List<NPuzzlePortion> {
         setRowsAndCols(1)

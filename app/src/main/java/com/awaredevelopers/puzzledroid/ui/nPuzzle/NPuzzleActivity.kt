@@ -31,8 +31,7 @@ class NPuzzleActivity : AppCompatActivity() {
         when(intent.extras?.getInt("GameModeKey")) {
             1 -> nPuzzle = NPuzzlePreloaded(applicationContext)
             2 -> nPuzzle = NPuzzleGallery(applicationContext, MediaStore.Images.Media.getBitmap(contentResolver, Uri.parse(intent.extras?.getString("imageUri"))))
-            3 -> nPuzzle = NPuzzleCam(applicationContext,
-                (intent.extras?.get("data") as Bitmap)!! )
+            3 -> nPuzzle = NPuzzleCam(applicationContext, MediaStore.Images.Media.getBitmap(contentResolver, Uri.parse(intent.extras?.getString("imageUri"))) )
             4 -> nPuzzle = NPuzzleFirebase(applicationContext)
             else ->  Log.d(TAG, "MODE SELECTED OUT OF RANGE!")
         }

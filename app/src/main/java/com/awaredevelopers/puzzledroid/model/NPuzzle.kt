@@ -44,8 +44,8 @@ open abstract class NPuzzle : AppCompatActivity{
         gameMode: GameMode,
         bitmap: Bitmap
     ){
-        this. id = 1
-        this.imgName = ""
+        this.id = 1
+        this.imgName = "PICTURE"
         this.level = 1
         this.context = applicationContext
         setRowsAndCols(level)
