@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/background"
+    android:hapticFeedbackEnabled="true"
     tools:context=".ui.home.HomeFragment">
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:hapticFeedbackEnabled="true">
 
         <TableRow
             android:layout_width="match_parent"
@@ -28,78 +30,78 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginTop="60dp">
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:hapticFeedbackEnabled="true"
                 android:id="@+id/textViewMode1"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_column="0"
-                android:layout_marginTop="30dp"
                 android:soundEffectsEnabled="true"
-                android:text="Mode 1"
+                android:text="@string/mode_preloaded_img"
                 android:fontFamily="@font/baby_monsta"
                 android:textColor="#FFFFFF"
                 android:textAlignment="center"
-                android:textSize="30sp" />
+                android:textSize="20sp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginTop="40dp">
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:hapticFeedbackEnabled="true"
                 android:id="@+id/textViewMode2"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_column="0"
-                android:layout_marginTop="30dp"
                 android:soundEffectsEnabled="true"
-                android:text="Mode 2"
+                android:text="@string/mode_random_gallery_img"
                 android:fontFamily="@font/baby_monsta"
                 android:textColor="#FFFFFF"
                 android:textAlignment="center"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginTop="40dp">
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:hapticFeedbackEnabled="true"
                 android:id="@+id/textViewMode3"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_column="0"
-                android:layout_marginTop="30dp"
                 android:soundEffectsEnabled="true"
-                android:text="Mode 3"
+                android:text="@string/mode_cam_picture_img"
                 android:fontFamily="@font/baby_monsta"
                 android:textColor="#FFFFFF"
                 android:textAlignment="center"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginTop="40dp">
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:hapticFeedbackEnabled="true"
                 android:id="@+id/textViewMode4"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_column="0"
-                android:layout_marginTop="30dp"
                 android:soundEffectsEnabled="true"
-                android:text="Mode 4"
+                android:text="@string/mode_firebase_img"
                 android:textColor="#FFFFFF"
                 android:fontFamily="@font/baby_monsta"
                 android:textAlignment="center"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
         </TableRow>
     </TableLayout>

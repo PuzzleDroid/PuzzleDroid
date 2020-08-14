@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.awaredevelopers.puzzledroid.R
 
+@Suppress("DEPRECATION")
 class HelpFragment: Fragment()  {
 
     companion object{

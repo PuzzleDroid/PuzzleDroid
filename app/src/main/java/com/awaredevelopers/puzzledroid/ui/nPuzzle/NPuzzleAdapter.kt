@@ -10,9 +10,7 @@ import android.util.Log
 import android.view.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.BaseAdapter
-import android.widget.ImageView
-import android.widget.RelativeLayout
+import android.widget.*
 import androidx.cardview.widget.CardView
 import com.awaredevelopers.puzzledroid.R
 import com.awaredevelopers.puzzledroid.db.AppDatabase
@@ -22,10 +20,8 @@ import com.awaredevelopers.puzzledroid.utility.NPuzzlePortion
 import com.awaredevelopers.puzzledroid.utility.NPuzzleRules
 import com.awaredevelopers.puzzledroid.utility.NPuzzleRules.getEmptySpace
 import kotlinx.android.synthetic.main.activity_npuzzle.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.android.synthetic.main.nav_header_main.view.*
+import kotlinx.coroutines.*
 import java.util.*
 import kotlin.coroutines.CoroutineContext
 
@@ -91,10 +87,11 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
                     notifyDataSetChanged()
                     isFirstRun = false
                 } else {
-                    Log.d(TAG, "Movement #${++movementsCounter}")
                     val pieceHeight = nPuzzleList[0].eHeight + nPuzzleList[0].drawable.intrinsicHeight
                     val animDuration = 100L
-                    when(getEmptySpace(position, list)) {
+                    var isMovement = true
+                    var newPosition = getEmptySpace(position, list)
+                    when(newPosition) {
                         position + 1 -> {
                             view.animate().translationX(pieceHeight).duration = animDuration
                             MediaPlayer.create(context, R.raw.se_left).start()
@@ -111,50 +108,57 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
                             view.animate().translationY(-pieceHeight).duration = animDuration
                             MediaPlayer.create(context, R.raw.se_left).start()
                         }
+                        else -> isMovement = false
                     }
+                     if(isMovement) Log.d(TAG, "Movement #${++movementsCounter}")
+
                     Handler().postDelayed({
                         notifyDataSetChanged()
                         //On click swap the content between two pieces if the piece with the "empty space" is in the right position.
                         Collections.swap(
                             list,
                             position,
-                            getEmptySpace(position, list)
+                            newPosition
                         )
                         //Incremental check to verify if the NPuzzle was solved.
                         if (NPuzzleRules.isCorrectOrder(list)) {
-                            //Fragment dialog --> Tiempo empleado, felicidades amijo, etc... con botones aceptar y a correr al Home...
-                            Log.d(TAG, "-------------------------------> Auuuu! You win")
-                            val nPuzzleActivity = parent.context as Activity
+                            Log.d(TAG, "-------------------------------> NPuzzle solved! Auuuu!! You win")
                             //Stop timmer
+                            val nPuzzleActivity = parent.context as Activity
                             nPuzzleActivity.chronometer.stop()
                             //Disable gridview
                             isSolved = true
-
                             //Audio effect success!
                             MediaPlayer.create(context, R.raw.se_success).start()
                             //Showing final popup
                             var winPopup = nPuzzleActivity.findViewById<RelativeLayout>(R.id.winPopup)
                             winPopup.visibility = View.VISIBLE
-                            val animation: Animation = AnimationUtils.loadAnimation(
+                            val animationPopup: Animation = AnimationUtils.loadAnimation(
                                 parent.context,
                                 R.anim.fade_in
                             )
-                            winPopup.startAnimation(animation);
+                            winPopup.startAnimation(animationPopup)
+                            //Animating chronometer
+                            var chrono = nPuzzleActivity.findViewById<Chronometer>(R.id.chronometer)
+                            val animationChrono: Animation = AnimationUtils.loadAnimation(
+                                parent.context,
+                                R.anim.sequential
+                            )
+                            chrono.startAnimation(animationChrono)
+                            var textSuccess = nPuzzleActivity.findViewById<TextView>(R.id.textSucces)
+                            typingAnimation(textSuccess, "Felicidades NOMBRE USUARIO\n tu tiempo ha sido de :", 1)
+
+                            //Save score
                             val score = ScoreEntity(
                                 nPuzzle.level,
                                 (SystemClock.elapsedRealtime() - nPuzzleActivity.chronometer.base).toInt(),
                                 "FALTA_NICK!",
                                 nPuzzle.imgName
                             )
-                            // Insert a score
-                            suspend fun insertScore(score: ScoreEntity) {
+                            launch {
                                 val applicationContext = parent.context.applicationContext
                                 val db = AppDatabase.getInstance(applicationContext)
                                 db.scoreDao().insertScore(score)
-                            }
-
-                            launch {
-                                insertScore(score)
                             }
                         }
                     }, animDuration)
@@ -198,5 +202,19 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
     // Count the items
     override fun getCount(): Int {
         return list.size
+    }
+
+    private fun typingAnimation(view: TextView, text: String, length: Int) {
+        var delay = 50L
+        if(Character.isWhitespace(text.elementAt(length-1))){
+            delay = 100L
+        }
+        view.text = text.substring(0,length)
+        when (length) {
+            text.length -> return
+            else -> Handler().postDelayed({
+                typingAnimation(view, text, length+1 )
+            }, delay)
+        }
     }
 }

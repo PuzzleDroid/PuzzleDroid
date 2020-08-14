@@ -7,7 +7,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import com.awaredevelopers.puzzledroid.utility.NPuzzlePortion
 
-open abstract class NPuzzle : AppCompatActivity{
+abstract class NPuzzle : AppCompatActivity{
     protected enum class GameMode {
         PRELOADED_IMG,
         RANDOM_GALLERY_IMG,

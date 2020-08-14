@@ -15,6 +15,7 @@ import com.awaredevelopers.puzzledroid.model.*
 import kotlinx.android.synthetic.main.activity_npuzzle.*
 
 
+@Suppress("DEPRECATION")
 class NPuzzleActivity : AppCompatActivity() {
     private val TAG = "NPuzzleActivity"
     lateinit var nPuzzle: NPuzzle
