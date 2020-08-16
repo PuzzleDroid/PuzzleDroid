@@ -3,7 +3,6 @@ package com.awaredevelopers.puzzledroid.ui.nPuzzle
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
-import android.media.MediaPlayer
 import android.os.Handler
 import android.os.SystemClock
 import android.util.Log
@@ -12,15 +11,18 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.LiveData
 import com.awaredevelopers.puzzledroid.R
 import com.awaredevelopers.puzzledroid.db.AppDatabase
 import com.awaredevelopers.puzzledroid.db.entity.ScoreEntity
+import com.awaredevelopers.puzzledroid.MainActivity
 import com.awaredevelopers.puzzledroid.model.NPuzzle
+import com.awaredevelopers.puzzledroid.utility.AudioFactory
+import com.awaredevelopers.puzzledroid.utility.AudioFactory.AudioEffect
 import com.awaredevelopers.puzzledroid.utility.NPuzzlePortion
 import com.awaredevelopers.puzzledroid.utility.NPuzzleRules
 import com.awaredevelopers.puzzledroid.utility.NPuzzleRules.getEmptySpace
 import kotlinx.android.synthetic.main.activity_npuzzle.*
-import kotlinx.android.synthetic.main.nav_header_main.view.*
 import kotlinx.coroutines.*
 import java.util.*
 import kotlin.coroutines.CoroutineContext
@@ -35,9 +37,9 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
     private lateinit var list: List<NPuzzlePortion>
     private lateinit var nPuzzle: NPuzzle
     private var isFirstRun = true
-    private var isSolved = false
     private var movementsCounter = 0
     private lateinit var context: Context
+    private var isSolved = false
 
     private var job: Job = Job()
 
@@ -94,19 +96,18 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
                     when(newPosition) {
                         position + 1 -> {
                             view.animate().translationX(pieceHeight).duration = animDuration
-                            MediaPlayer.create(context, R.raw.se_left).start()
-                        }
+                            AudioFactory.playAudioEffect(AudioEffect.MOVE_LEFT)                        }
                         position - 1 -> {
                             view.animate().translationX(-pieceHeight).duration = animDuration
-                            MediaPlayer.create(context, R.raw.se_rigth).start()
+                            AudioFactory.playAudioEffect(AudioEffect.MOVE_RIGHT)
                         }
                         position + list[position].numCols -> {
                             view.animate().translationY(pieceHeight).duration = animDuration
-                            MediaPlayer.create(context, R.raw.se_rigth).start()
+                            AudioFactory.playAudioEffect(AudioEffect.MOVE_TOP)
                         }
                         position - list[position].numCols -> {
                             view.animate().translationY(-pieceHeight).duration = animDuration
-                            MediaPlayer.create(context, R.raw.se_left).start()
+                            AudioFactory.playAudioEffect(AudioEffect.MOVE_BOTTOM)
                         }
                         else -> isMovement = false
                     }
@@ -129,7 +130,7 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
                             //Disable gridview
                             isSolved = true
                             //Audio effect success!
-                            MediaPlayer.create(context, R.raw.se_success).start()
+                            AudioFactory.playAudioEffect(AudioEffect.GAME_END)
                             //Showing final popup
                             var winPopup = nPuzzleActivity.findViewById<RelativeLayout>(R.id.winPopup)
                             winPopup.visibility = View.VISIBLE
@@ -146,7 +147,12 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
                             )
                             chrono.startAnimation(animationChrono)
                             var textSuccess = nPuzzleActivity.findViewById<TextView>(R.id.textSucces)
-                            typingAnimation(textSuccess, "Felicidades NOMBRE USUARIO\n tu tiempo ha sido de :", 1)
+                            typingAnimation(textSuccess, "Felicidades " + MainActivity.user.name + "\n tu tiempo ha sido de :", 1)
+
+                            MainActivity.user.level = nPuzzle.level + 1
+                            var excludedImagesMutable = MainActivity.user.excludedImages.toMutableList()
+                            excludedImagesMutable.add(nPuzzle.imgName)
+                            MainActivity.user.excludedImages = excludedImagesMutable
 
                             //Save score
                             val score = ScoreEntity(
@@ -155,9 +161,10 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
                                 "FALTA_NICK!",
                                 nPuzzle.imgName
                             )
+
                             launch {
-                                val applicationContext = parent.context.applicationContext
-                                val db = AppDatabase.getInstance(applicationContext)
+                                val db = AppDatabase.getInstance(context)
+                                db.userDao().updateUser(MainActivity.user)//
                                 db.scoreDao().insertScore(score)
                             }
                         }

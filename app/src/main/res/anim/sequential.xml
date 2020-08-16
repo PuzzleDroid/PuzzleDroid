@@ -2,27 +2,31 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android"
         android:fillAfter="true"
         android:interpolator="@android:anim/accelerate_decelerate_interpolator" >
-        <!-- Move -->
         <scale
             android:startOffset = "4000"
             android:duration="900"
             android:fromXScale="1"
             android:fromYScale="1"
-            android:pivotX="50%"
-            android:pivotY="50%"
             android:toXScale="4"
             android:toYScale="4"/>
         <translate
             android:startOffset = "4000"
             android:duration="900"
             android:fillAfter="true"
-            android:toXDelta="113%p"/>
+            android:toXDelta="15%p"/>
         <translate
             android:startOffset = "4000"
             android:duration="900"
             android:fillAfter="true"
             android:fromYDelta="0%p"
-            android:toYDelta="42%p" />
+            android:toYDelta="40%p" />
+        <rotate
+            android:startOffset = "4000"
+            android:duration="800"
+            android:fromDegrees="0"
+            android:toDegrees="-30"
+            android:pivotX="50%p"
+            android:pivotY="50%p" />
         <alpha
             android:fromAlpha="0.6"
             android:toAlpha="1"
@@ -30,12 +34,4 @@
             android:duration="700"
             android:repeatMode="reverse"
             android:repeatCount="infinite"/>
-        <rotate
-            android:startOffset = "4000"
-            android:duration="800"
-            android:fromDegrees="0"
-            android:toDegrees="-30"
-            android:pivotX="50%"
-            android:pivotY="50%" />
-
 </set>

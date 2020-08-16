@@ -16,7 +16,6 @@ class NPuzzleCam(applicationContext: Context, bmp: Bitmap): NPuzzle(
     applicationContext, GameMode.CAM_PICTURE_IMG, bmp) {
 
     override fun createNPuzzlePortions(): List<NPuzzlePortion> {
-        setRowsAndCols(1)
         return getListImageSliced(ImageUtil.scaleCenterCrop(bitmap), cols, rows)
     }
 

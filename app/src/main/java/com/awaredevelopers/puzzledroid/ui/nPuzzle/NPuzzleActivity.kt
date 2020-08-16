@@ -1,7 +1,5 @@
 package com.awaredevelopers.puzzledroid.ui.nPuzzle
 
-import android.R.attr.data
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.os.SystemClock
@@ -10,8 +8,16 @@ import android.util.Log
 import android.view.View
 import android.widget.Chronometer
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.room.InvalidationTracker
 import com.awaredevelopers.puzzledroid.R
+import com.awaredevelopers.puzzledroid.db.AppDatabase
+import com.awaredevelopers.puzzledroid.db.entity.UserEntity
 import com.awaredevelopers.puzzledroid.model.*
+import com.awaredevelopers.puzzledroid.utility.AudioFactory.createAudio
+import com.awaredevelopers.puzzledroid.utility.AudioFactory.pauseAudio
+import com.awaredevelopers.puzzledroid.utility.AudioFactory.resumeAudio
+import com.awaredevelopers.puzzledroid.utility.AudioFactory.stopAudio
 import kotlinx.android.synthetic.main.activity_npuzzle.*
 
 
@@ -27,7 +33,7 @@ class NPuzzleActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         hideSystemUI()
-        setContentView(R.layout.activity_npuzzle)
+        createAudio(this, delegate, window)
 
         when(intent.extras?.getInt("GameModeKey")) {
             1 -> nPuzzle = NPuzzlePreloaded(applicationContext)
@@ -55,18 +61,21 @@ class NPuzzleActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
+        pauseAudio()
         chronometer.stop()
         chronoLastStopTime = SystemClock.elapsedRealtime()
+
     }
 
     override fun onResume() {
         super.onResume()
+        resumeAudio()
         if (chronoLastStopTime == 0L) {
             chronometer.base = SystemClock.elapsedRealtime()
         } else {
             chronometer.base += SystemClock.elapsedRealtime() - chronoLastStopTime
         }
-        chronometer.start()
+            chronometer.start()
     }
 
     private fun hideSystemUI() {
@@ -81,10 +90,12 @@ class NPuzzleActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
     fun buttonBackMenu(view: View) {
+        stopAudio()
         onBackPressed()
     }
 
     fun buttonNextLevel(view: View) {
+        stopAudio()
         finish()
         startActivity(intent);
     }

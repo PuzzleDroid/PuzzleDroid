@@ -1,18 +1,27 @@
 package com.awaredevelopers.puzzledroid
 
+import android.media.AudioManager
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
+import com.awaredevelopers.puzzledroid.db.AppDatabase
+import com.awaredevelopers.puzzledroid.db.entity.UserEntity
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
+
+    companion object{
+        lateinit var user: UserEntity
+    }
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +37,16 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_home, R.id.nav_scores, R.id.nav_settings, R.id.nav_help), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        try {
+            val db = AppDatabase.getInstance(this)
+            db.userDao().loadLiveUsers().observe(this, Observer {
+                user = it[0]
+            })
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

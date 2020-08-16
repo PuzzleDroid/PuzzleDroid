@@ -10,7 +10,6 @@ class NPuzzleGallery(applicationContext: Context, bmp: Bitmap) : NPuzzle(
     applicationContext, GameMode.RANDOM_GALLERY_IMG, bmp) {
 
     override fun createNPuzzlePortions(): List<NPuzzlePortion> {
-        setRowsAndCols(2)
         return getListImageSliced(ImageUtil.scaleCenterCrop(bitmap), cols, rows)
     }
 }

@@ -5,6 +5,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
+import com.awaredevelopers.puzzledroid.MainActivity
+import com.awaredevelopers.puzzledroid.utility.IS_DEBUG
 import com.awaredevelopers.puzzledroid.utility.NPuzzlePortion
 
 abstract class NPuzzle : AppCompatActivity{
@@ -20,7 +22,7 @@ abstract class NPuzzle : AppCompatActivity{
     protected var cols = 0
     protected var rows = 0
     var id = 0
-    var level = 0
+    var level = MainActivity.user.level
     private var gameMode: GameMode
     protected var bitmap: Bitmap
     var nPuzzlePortions: List<NPuzzlePortion>
@@ -31,7 +33,6 @@ abstract class NPuzzle : AppCompatActivity{
     ){
         this. id = 1
         this.imgName = ""
-        this.level = 1
         this.context = applicationContext
         setRowsAndCols(level)
         this.gameMode = gameMode
@@ -46,7 +47,6 @@ abstract class NPuzzle : AppCompatActivity{
     ){
         this.id = 1
         this.imgName = "PICTURE"
-        this.level = 1
         this.context = applicationContext
         setRowsAndCols(level)
         this.gameMode = gameMode
@@ -54,11 +54,13 @@ abstract class NPuzzle : AppCompatActivity{
         this.nPuzzlePortions = createNPuzzlePortions()
     }
 
-    protected fun setRowsAndCols(level: Int){
-        when(level) {
-            1 -> {this.cols = 2; this.rows = 3}
-            2 -> {this.cols = 4; this.rows = 6}
-            3 -> {this.cols = 8; this.rows = 12}
+    private fun setRowsAndCols(level: Int) {
+        if(IS_DEBUG){
+            this.cols = 2
+            this.rows = 3
+        } else {
+            this.cols = (level + 1) * 2
+            this.rows = this.cols.div(0.666666).toInt()
         }
     }
 
