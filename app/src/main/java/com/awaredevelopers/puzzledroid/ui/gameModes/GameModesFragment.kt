@@ -13,6 +13,7 @@ import com.awaredevelopers.puzzledroid.ui.home.HomeViewModel
 import com.awaredevelopers.puzzledroid.ui.intentActivity.IntentActivity
 import com.awaredevelopers.puzzledroid.ui.nPuzzle.NPuzzleActivity
 
+@Suppress("DEPRECATION")
 class GameModesFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel

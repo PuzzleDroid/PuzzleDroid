@@ -2,12 +2,12 @@ package com.awaredevelopers.puzzledroid.ui.intentActivity
 
 import android.Manifest
 import android.app.Activity
+import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
@@ -15,16 +15,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import com.awaredevelopers.puzzledroid.ui.nPuzzle.NPuzzleActivity
-import java.io.File
-import java.io.IOException
-import java.text.SimpleDateFormat
-import java.util.*
 
 class IntentActivity : AppCompatActivity() {
-    private lateinit var gameMode: String
+
+
     private val TAG = "NPuzzleIntent"
+    private lateinit var gameMode: String
     val IMAGE_PICK_CODE = 1000
     val REQUEST_CAMERA= 1002
 
@@ -49,51 +46,29 @@ class IntentActivity : AppCompatActivity() {
         intentOpenGallery.type = "image/*"
         startActivityForResult(intentOpenGallery, IMAGE_PICK_CODE)
     }
-    private fun openCamera() {
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-            // Ensure that there's a camera activity to handle the intent
-            takePictureIntent.resolveActivity(packageManager)?.also {
-                // Create the File where the photo should go
-                val photoFile: File? = try {
-                    createImageFile()
-                } catch (ex: IOException) {
-                    // Error occurred while creating the File
-                    null
-                }
-                // Continue only if the File was successfully created
-                photoFile?.also {
-                    Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE).also { mediaScanIntent ->
-                        val f = File(currentPhotoPath)
-                        mediaScanIntent.data = Uri.fromFile(f)
-                        sendBroadcast(mediaScanIntent)
-                    }
-                    startActivityForResult(takePictureIntent, REQUEST_CAMERA)
-                }
-            }
-        }
-    }
-    lateinit var currentPhotoPath: String
 
-    @Throws(IOException::class)
-    private fun createImageFile(): File {
-        // Create an image file name
-        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        return File.createTempFile(
-            "JPEG_${timeStamp}_", /* prefix */
-            ".jpg", /* suffix */
-            storageDir /* directory */
-        ).apply {
-            // Save a file: path for use with ACTION_VIEW intents
-            currentPhotoPath = absolutePath
-        }
+    private var image_uri: Uri? = null
+    private fun openCamera() {
+        val values = ContentValues()
+        values.put(MediaStore.Images.Media.TITLE, "New Picture")
+        values.put(MediaStore.Images.Media.DESCRIPTION, "From the Camera")
+        image_uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+        //camera intent
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri)
+        startActivityForResult(cameraIntent, REQUEST_CAMERA)
     }
+
     //handle result of picked image
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        if (resultCode == Activity.RESULT_OK && (requestCode == IMAGE_PICK_CODE || requestCode == REQUEST_CAMERA)) {
-            val imageUri: Uri? = data?.data
+        if (resultCode == Activity.RESULT_OK) {
+            var imageUri: Uri? = null
+            if (requestCode == IMAGE_PICK_CODE){
+                imageUri = data?.data
+            } else if (requestCode == REQUEST_CAMERA) {
+                imageUri = image_uri
+            }
             startNPuzzleActivityGameMode(gameMode.toInt(), imageUri)
         } else {
             onBackPressed()

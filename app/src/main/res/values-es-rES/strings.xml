@@ -7,13 +7,14 @@
     <string name="action_settings">Configuración</string>
 
     <string name="menu_home">PuzzleDroid</string>
+    <string name="menu_start_game">Empezar NPuzzle</string>
     <string name="menu_scores">Puntuaciones</string>
     <string name="menu_settings">Configuración</string>
     <string name="menu_help">Ayuda</string>
 
-    <string name="mode_preloaded_img">NPuzzle clásico</string>
-    <string name="mode_random_gallery_img">NPuzzle con imágenes de tu dispositivo</string>
-    <string name="mode_cam_picture_img">NPuzzle tomando una foto con tu dispositivo</string>
+    <string name="mode_preloaded_img">NPuzzles clásicos</string>
+    <string name="mode_random_gallery_img">NPuzzle desde la Galleria</string>
+    <string name="mode_cam_picture_img">NPuzzle tomando una foto</string>
     <string name="mode_firebase_img">NPuzzle con imágenes online</string>
 
     <string name="button_next_lvl">Continuar</string>

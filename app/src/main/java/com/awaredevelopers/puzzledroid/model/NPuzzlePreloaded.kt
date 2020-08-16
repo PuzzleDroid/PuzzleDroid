@@ -14,11 +14,8 @@ class NPuzzlePreloaded(applicationContext: Context): NPuzzle( applicationContext
             returnRandomElementsNoRepeat(givenList)
         }
         super.imgName = givenList!![0].toString()
-//        val bmp = BitmapFactory.decodeStream(
-//            context.assets.open("preloaded_npuzzle_img/${givenList!![0].toString()}")
-//        )
         val bmp = BitmapFactory.decodeStream(
-            context.assets.open("preloaded_npuzzle_img/ny_west_44th_street.jpg")
+            context.assets.open("preloaded_npuzzle_img/${givenList[0].toString()}")
         )
         return getListImageSliced(bmp, cols, rows)
     }
@@ -27,7 +24,7 @@ class NPuzzlePreloaded(applicationContext: Context): NPuzzle( applicationContext
         val rand = Random()
         for (i in 0 until givenList.size - 1) {
             val randomIndex: Int = rand.nextInt(givenList.size)
-            val randomElement = givenList[randomIndex]
+//            val randomElement = givenList[randomIndex]
             givenList.removeAt(randomIndex)
         }
     }

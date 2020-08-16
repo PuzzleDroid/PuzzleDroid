@@ -3,30 +3,27 @@ package com.awaredevelopers.puzzledroid.ui.nPuzzle
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.os.Handler
 import android.os.SystemClock
 import android.util.Log
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.BaseAdapter
-import android.widget.ImageView
-import android.widget.RelativeLayout
+import android.widget.*
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.LiveData
 import com.awaredevelopers.puzzledroid.R
 import com.awaredevelopers.puzzledroid.db.AppDatabase
 import com.awaredevelopers.puzzledroid.db.entity.ScoreEntity
+import com.awaredevelopers.puzzledroid.MainActivity
 import com.awaredevelopers.puzzledroid.model.NPuzzle
+import com.awaredevelopers.puzzledroid.utility.AudioFactory
+import com.awaredevelopers.puzzledroid.utility.AudioFactory.AudioEffect
 import com.awaredevelopers.puzzledroid.utility.NPuzzlePortion
 import com.awaredevelopers.puzzledroid.utility.NPuzzleRules
-import com.awaredevelopers.puzzledroid.utility.TimeUtil
+import com.awaredevelopers.puzzledroid.utility.NPuzzleRules.getEmptySpace
 import kotlinx.android.synthetic.main.activity_npuzzle.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.util.*
 import kotlin.coroutines.CoroutineContext
 
@@ -36,22 +33,24 @@ import kotlin.coroutines.CoroutineContext
  * The main object is the nPuzzleList collection with sliced pieces of the NPuzzle.
  */
 class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
-    private lateinit var nPuzzleList:MutableList<NPuzzlePortion>
+    private lateinit var nPuzzleList: MutableList<NPuzzlePortion>
     private lateinit var list: List<NPuzzlePortion>
     private lateinit var nPuzzle: NPuzzle
     private var isFirstRun = true
-    private var isSolved = false
     private var movementsCounter = 0
+    private lateinit var context: Context
+    private var isSolved = false
 
     private var job: Job = Job()
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
-    constructor (nPuzzle: NPuzzle): this(){
+    constructor (nPuzzle: NPuzzle, context: Context) : this() {
         this.nPuzzleList = nPuzzle.nPuzzlePortions as MutableList<NPuzzlePortion>
         this.list = nPuzzle.nPuzzlePortions
         this.nPuzzle = nPuzzle
+        this.context = context
     }
 
     companion object{
@@ -67,7 +66,7 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
             parameters unless you use inflate(int, android.view.ViewGroup, boolean)
             to specify a root view and to prevent attachment to the root.
     */
-    @SuppressLint("ViewHolder", "InflateParams")
+    @SuppressLint("ViewHolder", "InflateParams", "ClickableViewAccessibility")
     override fun getView(position:Int, convertView: View?, parent: ViewGroup?):View{
         // Inflate the custom view
         val inflater = parent?.context?.
@@ -80,10 +79,7 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
 
         // Display drawable on ImageView
         gridPiece.setImageDrawable(list[position].drawable)
-
-        // Set a click listener for card view
         cardContainer.setOnClickListener{
-
             if (!isSolved) {
                 if (isFirstRun) {
                     //On first click we replace the last piece with a blank one, shuffle and repaint.
@@ -93,71 +89,86 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
                     notifyDataSetChanged()
                     isFirstRun = false
                 } else {
-                    //Toast to popup a debug msg with detailed information.
-//                Toast.makeText(
-//                    parent.context, "Position= ${getItemId(position)}\n ${list[position].toString()}", Toast.LENGTH_SHORT
-//                ).show()
-
-                    Log.d(TAG, "Movement #${++movementsCounter}")
-
-                    //On click swap the content between two pieces if the piece with the "empty space" is in the right position.
-                    Collections.swap(
-                        list,
-                        position,
-                        NPuzzleRules.getEmptySpace(position, list, list[position].numCols)
-                    )
-
-                    //TODO animaciones no funcionan si hacemos un notifyDataSetChanged()
-//                    val anim = AnimationUtils.loadAnimation(
-//                        view.context,
-//                        R.anim.fade_in
-//                    )
-//                    anim.startOffset = (position * 500).toLong()
-//                    view.animation = anim
-//                    anim.start()
-
-                    notifyDataSetChanged()
-
-                    //Incremental check to verify if the NPuzzle was solved.
-                    if (NPuzzleRules.isCorrectOrder(list)) {
-                        //Fragment dialog --> Tiempo empleado, felicidades amijo, etc... con botones aceptar y a correr al Home...
-                        Log.d(TAG, "-------------------------------> Auuuu! You win")
-                        val nPuzzleActivity = parent.context as Activity
-                        //Stop timmer
-                        nPuzzleActivity.chronometer.stop()
-                        //Disable gridview
-                        isSolved = true
-
-                        //Showing final popup
-                        var winPopup = nPuzzleActivity.findViewById<RelativeLayout>(R.id.winPopup)
-                        winPopup.visibility = View.VISIBLE
-                        val animation: Animation = AnimationUtils.loadAnimation(
-                            parent.context,
-                            R.anim.fade_in
-                        )
-                        winPopup.startAnimation(animation);
-                        val score = ScoreEntity(
-                            nPuzzle.level,
-                            (SystemClock.elapsedRealtime() - nPuzzleActivity.chronometer.base).toInt(),
-                            "FALTA_NICK!",
-                            nPuzzle.imgName
-                        )
-
-
-
-                        // Insert a score
-                        suspend fun insertScore(score: ScoreEntity) {
-                            val applicationContext = parent.context.getApplicationContext()
-
-                            val db = AppDatabase.getInstance(applicationContext)
-
-                            db.scoreDao().insertScore(score)
+                    val pieceHeight = nPuzzleList[0].eHeight + nPuzzleList[0].drawable.intrinsicHeight
+                    val animDuration = 100L
+                    var isMovement = true
+                    var newPosition = getEmptySpace(position, list)
+                    when(newPosition) {
+                        position + 1 -> {
+                            view.animate().translationX(pieceHeight).duration = animDuration
+                            AudioFactory.playAudioEffect(AudioEffect.MOVE_LEFT)                        }
+                        position - 1 -> {
+                            view.animate().translationX(-pieceHeight).duration = animDuration
+                            AudioFactory.playAudioEffect(AudioEffect.MOVE_RIGHT)
                         }
-
-                        launch {
-                            insertScore(score)
+                        position + list[position].numCols -> {
+                            view.animate().translationY(pieceHeight).duration = animDuration
+                            AudioFactory.playAudioEffect(AudioEffect.MOVE_TOP)
                         }
+                        position - list[position].numCols -> {
+                            view.animate().translationY(-pieceHeight).duration = animDuration
+                            AudioFactory.playAudioEffect(AudioEffect.MOVE_BOTTOM)
+                        }
+                        else -> isMovement = false
                     }
+                     if(isMovement) Log.d(TAG, "Movement #${++movementsCounter}")
+
+                    Handler().postDelayed({
+                        notifyDataSetChanged()
+                        //On click swap the content between two pieces if the piece with the "empty space" is in the right position.
+                        Collections.swap(
+                            list,
+                            position,
+                            newPosition
+                        )
+                        //Incremental check to verify if the NPuzzle was solved.
+                        if (NPuzzleRules.isCorrectOrder(list)) {
+                            Log.d(TAG, "-------------------------------> NPuzzle solved! Auuuu!! You win")
+                            //Stop timmer
+                            val nPuzzleActivity = parent.context as Activity
+                            nPuzzleActivity.chronometer.stop()
+                            //Disable gridview
+                            isSolved = true
+                            //Audio effect success!
+                            AudioFactory.playAudioEffect(AudioEffect.GAME_END)
+                            //Showing final popup
+                            var winPopup = nPuzzleActivity.findViewById<RelativeLayout>(R.id.winPopup)
+                            winPopup.visibility = View.VISIBLE
+                            val animationPopup: Animation = AnimationUtils.loadAnimation(
+                                parent.context,
+                                R.anim.fade_in
+                            )
+                            winPopup.startAnimation(animationPopup)
+                            //Animating chronometer
+                            var chrono = nPuzzleActivity.findViewById<Chronometer>(R.id.chronometer)
+                            val animationChrono: Animation = AnimationUtils.loadAnimation(
+                                parent.context,
+                                R.anim.sequential
+                            )
+                            chrono.startAnimation(animationChrono)
+                            var textSuccess = nPuzzleActivity.findViewById<TextView>(R.id.textSucces)
+                            typingAnimation(textSuccess, "Felicidades " + MainActivity.user.name + "\n tu tiempo ha sido de :", 1)
+
+                            MainActivity.user.level = nPuzzle.level + 1
+                            var excludedImagesMutable = MainActivity.user.excludedImages.toMutableList()
+                            excludedImagesMutable.add(nPuzzle.imgName)
+                            MainActivity.user.excludedImages = excludedImagesMutable
+
+                            //Save score
+                            val score = ScoreEntity(
+                                nPuzzle.level,
+                                (SystemClock.elapsedRealtime() - nPuzzleActivity.chronometer.base).toInt(),
+                                "FALTA_NICK!",
+                                nPuzzle.imgName
+                            )
+
+                            launch {
+                                val db = AppDatabase.getInstance(context)
+                                db.userDao().updateUser(MainActivity.user)//
+                                db.scoreDao().insertScore(score)
+                            }
+                        }
+                    }, animDuration)
                 }
             }
         }
@@ -198,5 +209,19 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
     // Count the items
     override fun getCount(): Int {
         return list.size
+    }
+
+    private fun typingAnimation(view: TextView, text: String, length: Int) {
+        var delay = 50L
+        if(Character.isWhitespace(text.elementAt(length-1))){
+            delay = 100L
+        }
+        view.text = text.substring(0,length)
+        when (length) {
+            text.length -> return
+            else -> Handler().postDelayed({
+                typingAnimation(view, text, length+1 )
+            }, delay)
+        }
     }
 }

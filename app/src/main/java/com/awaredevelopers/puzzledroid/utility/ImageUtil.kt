@@ -88,7 +88,9 @@ object ImageUtil {
                         ),
                         numCols = cols,
                         numRows = rows,
-                        drawable = drawable
+                        drawable = drawable,
+                        eWidth = eWidth.toFloat(),
+                        eHeight = eHeight.toFloat()
                     )
                 nPuzzle.add(nPuzzlePortion)
                 count += 1
@@ -102,10 +104,18 @@ object ImageUtil {
 class Coordinates(private var x: Int, private var y: Int){
     override fun toString(): String { return "( $x, $y)" }
 }
-class NPuzzlePortion(val id:Int, val coord: Coordinates, var numCols: Int, var numRows: Int, val drawable: Drawable) {
+class NPuzzlePortion(
+    val id:Int,
+    val coord: Coordinates,
+    var numCols: Int,
+    var numRows: Int,
+    val drawable: Drawable,
+    val eWidth: Float,
+    val eHeight: Float) {
     constructor(): this(
        -1,
-        Coordinates(-1, -1),-1,-1, ColorDrawable(Color.TRANSPARENT)
+
+        Coordinates(-1, -1),-1,-1, ColorDrawable(Color.TRANSPARENT), 0f, 0f
     )
     override fun toString(): String { return "ID: $id \n( x, y): $coord \nCols: $numCols, Rows: $numRows"
     }
