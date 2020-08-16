@@ -8,18 +8,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Chronometer
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.room.InvalidationTracker
 import com.awaredevelopers.puzzledroid.R
-import com.awaredevelopers.puzzledroid.db.AppDatabase
-import com.awaredevelopers.puzzledroid.db.entity.UserEntity
 import com.awaredevelopers.puzzledroid.model.*
 import com.awaredevelopers.puzzledroid.utility.AudioFactory.createAudio
 import com.awaredevelopers.puzzledroid.utility.AudioFactory.pauseAudio
 import com.awaredevelopers.puzzledroid.utility.AudioFactory.resumeAudio
 import com.awaredevelopers.puzzledroid.utility.AudioFactory.stopAudio
 import kotlinx.android.synthetic.main.activity_npuzzle.*
-
 
 @Suppress("DEPRECATION")
 class NPuzzleActivity : AppCompatActivity() {
