@@ -6,41 +6,41 @@
 
     <TextView
         android:id="@+id/score_imgName"
-        android:layout_width="120dip"
-        android:layout_height="wrap_content"
-        android:paddingVertical="30dip"
-        android:paddingHorizontal="20dip"
+        android:layout_width="230dp"
+        android:layout_height="62dp"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:textColor="#CC0033"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/score_nickname"
+        android:layout_width="230dp"
+        android:layout_height="55dp"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:layout_below="@+id/score_imgName"
         android:textColor="#CC0033"
         android:textSize="24sp" />
 
     <TextView
         android:id="@+id/score_level"
-        android:layout_width="120dip"
-        android:layout_height="wrap_content"
-        android:paddingVertical="30dip"
-        android:paddingHorizontal="20dip"
-        android:textColor="#CC0033"
-        android:textSize="24sp"
-        android:layout_alignParentRight="true"/>
-
-    <TextView
-        android:id="@+id/score_time"
-        android:layout_width="120dip"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/score_level"
+        android:layout_width="180dp"
+        android:layout_height="59dp"
+        android:layout_toEndOf="@+id/score_nickname"
         android:paddingHorizontal="20dp"
-        android:paddingVertical="30dp"
+        android:paddingVertical="10dp"
         android:textColor="#CC0033"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/score_nickname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="30dip"
-        android:paddingHorizontal="20dip"
+        android:id="@+id/score_time"
+        android:layout_width="180dp"
+        android:layout_height="61dp"
+        android:layout_below="@+id/score_level"
+        android:layout_toEndOf="@+id/score_nickname"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
         android:textColor="#CC0033"
-        android:textSize="24sp"
-        android:layout_toLeftOf="@+id/score_time"/>
-
+        android:textSize="16sp" />
 </RelativeLayout>
