@@ -42,33 +42,9 @@ class ScoresFragment : Fragment() {
 
         listView.adapter = scoresAdapter
 
-        fun orderScores(scores: List<ScoreEntity>): List<ScoreEntity> {
-            var scoresSorted = mutableListOf<ScoreEntity>()
-
-            scores.forEach {
-                if (scoresSorted.isNotEmpty()) {
-                    for (index in 0 until scoresSorted.size) {
-                        if (it.score < scoresSorted.get(index).score) {
-                            scoresSorted.add(index, it)
-                            break
-                        }
-
-                        if (index === scoresSorted.size- 1) {
-                            scoresSorted.add(it)
-                        }
-                    }
-
-                } else {
-                    scoresSorted.add(it)
-                }
-            }
-
-            return scoresSorted
-        }
-
         viewLifecycleOwner.lifecycleScope.launch {
             loadScores().observe(viewLifecycleOwner, Observer {
-                scoresAdapter.setScores(orderScores(it))
+                scoresAdapter.setScores(it)
             })
         }
 
