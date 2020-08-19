@@ -3,10 +3,8 @@ package com.awaredevelopers.puzzledroid.model
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import com.awaredevelopers.puzzledroid.MainActivity
-import com.awaredevelopers.puzzledroid.utility.IS_DEBUG
 import com.awaredevelopers.puzzledroid.utility.NPuzzlePortion
 
 abstract class NPuzzle : AppCompatActivity{
@@ -55,13 +53,8 @@ abstract class NPuzzle : AppCompatActivity{
     }
 
     private fun setRowsAndCols(level: Int) {
-        if(IS_DEBUG){
-            this.cols = 2
-            this.rows = 3
-        } else {
             this.cols = (level + 1) * 2
             this.rows = this.cols.div(0.666666).toInt()
-        }
     }
 
     protected abstract fun createNPuzzlePortions(): List<NPuzzlePortion>

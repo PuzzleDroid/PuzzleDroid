@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.awaredevelopers.puzzledroid.R
 import com.awaredevelopers.puzzledroid.ui.nPuzzle.NPuzzleActivity
 
 class IntentActivity : AppCompatActivity() {
@@ -27,6 +28,8 @@ class IntentActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+
         gameMode = intent.extras?.getInt("GameModeKey").toString()
 
         if(gameMode == "2" && askForPermissionsGallery()){
@@ -130,9 +133,12 @@ class IntentActivity : AppCompatActivity() {
     }
 
     private fun showPermissionDeniedDialog() {
+//        ActivityCompat.requestPermissions(this as Activity,arrayOf(Manifest.permission.CAMERA),REQUEST_CAMERA)
+        val permissionDeniedTitle: String by lazy { resources.getString(R.string.permission_denied_title) }
+        val permissionDeniedDes: String by lazy { resources.getString(R.string.permission_denied_description) }
         AlertDialog.Builder(this)
-            .setTitle("Permission Denied")
-            .setMessage("Permission is denied, Please allow permissions from App Settings.")
+            .setTitle(permissionDeniedTitle)
+            .setMessage(permissionDeniedDes)
             .setPositiveButton("App Settings",
                 DialogInterface.OnClickListener { dialogInterface, i ->
                     // send to app settings if permission is denied permanently

@@ -158,10 +158,9 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
                             val score = ScoreEntity(
                                 nPuzzle.level,
                                 (SystemClock.elapsedRealtime() - nPuzzleActivity.chronometer.base).toInt(),
-                                "FALTA_NICK!",
+                                MainActivity.user.name,
                                 nPuzzle.imgName
                             )
-
                             launch {
                                 val db = AppDatabase.getInstance(context)
                                 db.userDao().updateUser(MainActivity.user)//

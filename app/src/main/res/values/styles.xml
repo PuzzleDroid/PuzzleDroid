@@ -5,7 +5,8 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorPrimary</item>
 
         <item name="android:windowEnterTransition">@transition/transition_enter</item>
         <item name="android:windowExitTransition">@transition/transition_exit</item>
@@ -13,6 +14,7 @@
         <item name="android:windowReturnTransition">@transition/transition_return</item>
         <item name="android:windowAllowEnterTransitionOverlap">false</item>
         <item name="android:windowAllowReturnTransitionOverlap">false</item>
+        <item name="android:actionBarStyle">@style/ActionBarTheme</item>
 
     </style>
 
@@ -29,4 +31,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="ActionBarTheme" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="popupTheme">@style/ActionBarTheme</item>
+        <item name="background">@color/colorAccent</item>
+    </style>
 </resources>

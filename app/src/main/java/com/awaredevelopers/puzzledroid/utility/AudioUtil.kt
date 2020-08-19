@@ -5,9 +5,10 @@ import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.media.SoundPool
+import android.net.Uri
 import android.os.Build
 import android.view.Window
-import androidx.appcompat.app.AppCompatDelegate
+import com.awaredevelopers.puzzledroid.MainActivity
 import com.awaredevelopers.puzzledroid.R
 
 object AudioFactory {
@@ -20,39 +21,47 @@ object AudioFactory {
         GAME_END
     }
 
-    private var backgroundTheme = MediaPlayer()
-    private var audioEffects: SoundPool? = null
-    private var isEnabledBackgroundAudio: Boolean = true
-    private var isEnabledAudioEffects: Boolean = true
+    var customTheme: Uri? = null
+    private lateinit var backgroundTheme: MediaPlayer
+    private lateinit var audioEffects: SoundPool
 
-    fun createAudio(context: Context, delegate: AppCompatDelegate, window: Window) {
+    private fun isEnabledBackgroundAudio():Boolean {
+        return MainActivity.user.isEnabledBackgroundAudio == 1
+    }
+
+    private fun isEnabledAudioEffects():Boolean {
+        return MainActivity.user.isEnabledAudioEffects == 1
+    }
+
+    fun createAudio(context: Context, window: Window) {
         try {
             //Creating a background theme using a MediaPlayer
-            if(isEnabledBackgroundAudio) {
-                delegate.setContentView(R.layout.activity_npuzzle)
-                window.volumeControlStream = AudioManager.STREAM_MUSIC;
-                this.backgroundTheme = MediaPlayer.create(context, R.raw.test)
-                backgroundTheme.isLooping = true
-                backgroundTheme.start()
+            window.volumeControlStream = AudioManager.STREAM_MUSIC;
+            if (customTheme == null){
+                backgroundTheme = MediaPlayer.create(context, R.raw.background_theme)
+            } else {
+                backgroundTheme = MediaPlayer.create(context, customTheme)
             }
+            backgroundTheme.isLooping = true
+            if (isEnabledBackgroundAudio()) backgroundTheme.start()
+
             //Creating a collection of audioeffects using a SoundPool
-            if (isEnabledAudioEffects) {
+            audioEffects =
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     var audioAttributes = AudioAttributes.Builder()
                         .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
                         .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                         .build()
-                    audioEffects = SoundPool.Builder()
+                    SoundPool.Builder()
                         .setMaxStreams(6)
                         .setAudioAttributes(audioAttributes)
                         .build();
                 } else {
-                    audioEffects = SoundPool(6, AudioManager.STREAM_MUSIC, 0)
+                    SoundPool(6, AudioManager.STREAM_MUSIC, 0)
                 }
-                audioEffects?.load(context, R.raw.se_left, 1);
-                audioEffects?.load(context, R.raw.se_rigth, 1);
-                audioEffects?.load(context, R.raw.se_success, 1);
-            }
+            audioEffects.load(context, R.raw.se_left, 1);
+            audioEffects.load(context, R.raw.se_rigth, 1);
+            audioEffects.load(context, R.raw.se_cheers, 1);
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -60,12 +69,16 @@ object AudioFactory {
 
     fun stopAudio(){
         try {
-            backgroundTheme.reset()
-            backgroundTheme.prepare()
-            backgroundTheme.stop()
-            backgroundTheme.release()
-            audioEffects?.autoPause()
-            audioEffects?.release()
+            if(isEnabledBackgroundAudio()) {
+                backgroundTheme.reset()
+                backgroundTheme.prepare()
+                backgroundTheme.stop()
+                backgroundTheme.release()
+            }
+            if (isEnabledAudioEffects()) {
+                audioEffects.autoPause()
+                audioEffects.release()
+            }
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -73,8 +86,12 @@ object AudioFactory {
 
     fun pauseAudio(){
         try {
-            backgroundTheme.pause()
-            audioEffects?.autoPause()
+            if(isEnabledBackgroundAudio()) {
+                backgroundTheme.pause()
+            }
+            if (isEnabledAudioEffects()) {
+                audioEffects.autoPause()
+            }
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -82,8 +99,12 @@ object AudioFactory {
 
     fun resumeAudio(){
         try {
-            backgroundTheme.start()
-            audioEffects?.autoResume()
+            if(isEnabledBackgroundAudio()) {
+                backgroundTheme.start()
+            }
+            if (isEnabledAudioEffects()) {
+                audioEffects.autoResume()
+            }
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -91,12 +112,27 @@ object AudioFactory {
 
     fun playAudioEffect(audioEffect: AudioEffect){
         try {
-            when (audioEffect) {
-                AudioEffect.MOVE_RIGHT, AudioEffect.MOVE_TOP -> audioEffects?.play(1,1F, 1F, 0, 0, 1F)
-                AudioEffect.MOVE_LEFT, AudioEffect.MOVE_BOTTOM -> audioEffects?.play(2,1F, 1F, 0, 0, 1F)
-                AudioEffect.GAME_END -> audioEffects?.play(3,1F, 1F, 1, 0, 1F)
+            if (isEnabledAudioEffects()) {
+                when (audioEffect) {
+                    AudioEffect.MOVE_RIGHT, AudioEffect.MOVE_TOP -> audioEffects.play(
+                        1,
+                        1F,
+                        1F,
+                        0,
+                        0,
+                        1F
+                    )
+                    AudioEffect.MOVE_LEFT, AudioEffect.MOVE_BOTTOM -> audioEffects.play(
+                        2,
+                        1F,
+                        1F,
+                        0,
+                        0,
+                        1F
+                    )
+                    AudioEffect.GAME_END -> audioEffects.play(3, 1F, 1F, 1, 0, 1F)
+                }
             }
-//            audioEffects?.autoPause();
         } catch (e: Exception) {
             e.printStackTrace()
         }
