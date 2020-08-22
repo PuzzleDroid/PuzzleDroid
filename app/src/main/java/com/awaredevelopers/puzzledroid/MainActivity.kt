@@ -1,7 +1,6 @@
 package com.awaredevelopers.puzzledroid
 
-import android.media.AudioManager
-import android.media.MediaPlayer
+
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -16,6 +15,8 @@ import androidx.navigation.ui.*
 import com.awaredevelopers.puzzledroid.db.AppDatabase
 import com.awaredevelopers.puzzledroid.db.entity.UserEntity
 import com.google.android.material.navigation.NavigationView
+
+
 
 class MainActivity : AppCompatActivity() {
 

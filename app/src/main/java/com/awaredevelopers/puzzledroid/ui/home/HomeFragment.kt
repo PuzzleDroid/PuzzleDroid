@@ -16,7 +16,6 @@ import com.awaredevelopers.puzzledroid.db.entity.ScoreEntity
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
-    private lateinit var scoreList: List<ScoreEntity>
 
     override fun onCreateView(
             inflater: LayoutInflater,

@@ -65,5 +65,4 @@ abstract class NPuzzle : AppCompatActivity{
     }
 
     protected abstract fun createNPuzzlePortions(): List<NPuzzlePortion>
-
 }

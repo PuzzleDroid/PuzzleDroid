@@ -1,5 +1,7 @@
 package com.awaredevelopers.puzzledroid.ui.nPuzzle
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.os.SystemClock
@@ -15,6 +17,11 @@ import com.awaredevelopers.puzzledroid.utility.AudioFactory.pauseAudio
 import com.awaredevelopers.puzzledroid.utility.AudioFactory.resumeAudio
 import com.awaredevelopers.puzzledroid.utility.AudioFactory.stopAudio
 import kotlinx.android.synthetic.main.activity_npuzzle.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import java.net.URL
+import kotlin.Exception
 
 @Suppress("DEPRECATION")
 class NPuzzleActivity : AppCompatActivity() {
@@ -34,7 +41,10 @@ class NPuzzleActivity : AppCompatActivity() {
             1 -> nPuzzle = NPuzzlePreloaded(applicationContext)
             2 -> nPuzzle = NPuzzleGallery(applicationContext, MediaStore.Images.Media.getBitmap(contentResolver, Uri.parse(intent.extras?.getString("imageUri"))))
             3 -> nPuzzle = NPuzzleCam(applicationContext, MediaStore.Images.Media.getBitmap(contentResolver, Uri.parse(intent.extras?.getString("imageUri"))) )
-            4 -> nPuzzle = NPuzzleFirebase(applicationContext)
+            4 -> {
+                val bmp: Bitmap = BitmapFactory.decodeByteArray(intent.extras?.getByteArray("bmp"), 0, intent.extras?.getByteArray("bmp")!!.count())
+                nPuzzle = NPuzzleFirebase(applicationContext, bmp)
+            }
             else ->  Log.d(TAG, "MODE SELECTED OUT OF RANGE!")
         }
 
