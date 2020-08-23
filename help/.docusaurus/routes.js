@@ -3,73 +3,73 @@ import React from 'react';
 import ComponentCreator from '@docusaurus/ComponentCreator';
 export default [
 {
-  path: '/',
-  component: ComponentCreator('/','deb'),
+  path: '/PuzzleDroid/',
+  component: ComponentCreator('/PuzzleDroid/','c2c'),
   exact: true,
 },
 {
-  path: '/blog',
-  component: ComponentCreator('/blog','728'),
+  path: '/PuzzleDroid/blog',
+  component: ComponentCreator('/PuzzleDroid/blog','b1c'),
   exact: true,
 },
 {
-  path: '/blog/hello-world',
-  component: ComponentCreator('/blog/hello-world','798'),
+  path: '/PuzzleDroid/blog/hello-world',
+  component: ComponentCreator('/PuzzleDroid/blog/hello-world','82d'),
   exact: true,
 },
 {
-  path: '/blog/hola',
-  component: ComponentCreator('/blog/hola','08d'),
+  path: '/PuzzleDroid/blog/hola',
+  component: ComponentCreator('/PuzzleDroid/blog/hola','3c0'),
   exact: true,
 },
 {
-  path: '/blog/tags',
-  component: ComponentCreator('/blog/tags','3a8'),
+  path: '/PuzzleDroid/blog/tags',
+  component: ComponentCreator('/PuzzleDroid/blog/tags','fdf'),
   exact: true,
 },
 {
-  path: '/blog/tags/docusaurus',
-  component: ComponentCreator('/blog/tags/docusaurus','917'),
+  path: '/PuzzleDroid/blog/tags/docusaurus',
+  component: ComponentCreator('/PuzzleDroid/blog/tags/docusaurus','385'),
   exact: true,
 },
 {
-  path: '/blog/tags/facebook',
-  component: ComponentCreator('/blog/tags/facebook','c2b'),
+  path: '/PuzzleDroid/blog/tags/facebook',
+  component: ComponentCreator('/PuzzleDroid/blog/tags/facebook','845'),
   exact: true,
 },
 {
-  path: '/blog/tags/hello',
-  component: ComponentCreator('/blog/tags/hello','c12'),
+  path: '/PuzzleDroid/blog/tags/hello',
+  component: ComponentCreator('/PuzzleDroid/blog/tags/hello','825'),
   exact: true,
 },
 {
-  path: '/blog/tags/hola',
-  component: ComponentCreator('/blog/tags/hola','084'),
+  path: '/PuzzleDroid/blog/tags/hola',
+  component: ComponentCreator('/PuzzleDroid/blog/tags/hola','16d'),
   exact: true,
 },
 {
-  path: '/blog/welcome',
-  component: ComponentCreator('/blog/welcome','cb0'),
+  path: '/PuzzleDroid/blog/welcome',
+  component: ComponentCreator('/PuzzleDroid/blog/welcome','d2a'),
   exact: true,
 },
 {
-  path: '/docs',
-  component: ComponentCreator('/docs','563'),
+  path: '/PuzzleDroid/docs',
+  component: ComponentCreator('/PuzzleDroid/docs','1fb'),
   
   routes: [
 {
-  path: '/docs/',
-  component: ComponentCreator('/docs/','87d'),
+  path: '/PuzzleDroid/docs/',
+  component: ComponentCreator('/PuzzleDroid/docs/','f72'),
   exact: true,
 },
 {
-  path: '/docs/doc2',
-  component: ComponentCreator('/docs/doc2','fd3'),
+  path: '/PuzzleDroid/docs/doc2',
+  component: ComponentCreator('/PuzzleDroid/docs/doc2','1b2'),
   exact: true,
 },
 {
-  path: '/docs/mdx',
-  component: ComponentCreator('/docs/mdx','955'),
+  path: '/PuzzleDroid/docs/mdx',
+  component: ComponentCreator('/PuzzleDroid/docs/mdx','345'),
   exact: true,
 },
 ]

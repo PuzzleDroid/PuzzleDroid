@@ -5,11 +5,11 @@
   "title": "How can I get an user?",
   "description": "You might want no use any account an win using a anonymous user, that's totally right but if you want to be a legend, You can using you Google account to connect with.",
   "source": "@site/docs/mdx.md",
-  "permalink": "/docs/mdx",
+  "permalink": "/PuzzleDroid/docs/mdx",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/mdx.md",
   "sidebar": "someSidebar",
   "previous": {
     "title": "The end of the game",
-    "permalink": "/docs/doc2"
+    "permalink": "/PuzzleDroid/docs/doc2"
   }
 }

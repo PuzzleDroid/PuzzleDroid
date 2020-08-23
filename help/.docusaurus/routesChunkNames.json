@@ -1,9 +1,9 @@
 {
-  "/-deb": {
+  "/PuzzleDroid/-c2c": {
     "component": "c4f5d8e4",
     "config": "5e9f5e1a"
   },
-  "/blog-728": {
+  "/PuzzleDroid/blog-b1c": {
     "component": "a6aa9e1f",
     "items": [
       {
@@ -16,21 +16,21 @@
         "content": "8e9f0a8a"
       }
     ],
-    "metadata": "bbb4ffb5"
+    "metadata": "5111b39c"
   },
-  "/blog/hello-world-798": {
+  "/PuzzleDroid/blog/hello-world-82d": {
     "component": "ccc49370",
     "content": "d610846f"
   },
-  "/blog/hola-08d": {
+  "/PuzzleDroid/blog/hola-3c0": {
     "component": "ccc49370",
     "content": "bdd709f1"
   },
-  "/blog/tags-3a8": {
+  "/PuzzleDroid/blog/tags-fdf": {
     "component": "01a85c17",
-    "tags": "8be5b89e"
+    "tags": "7e09f67c"
   },
-  "/blog/tags/docusaurus-917": {
+  "/PuzzleDroid/blog/tags/docusaurus-385": {
     "component": "6875c492",
     "items": [
       {
@@ -43,18 +43,18 @@
         "content": "8e9f0a8a"
       }
     ],
-    "metadata": "6ca375e2"
+    "metadata": "b3c22256"
   },
-  "/blog/tags/facebook-c2b": {
+  "/PuzzleDroid/blog/tags/facebook-845": {
     "component": "6875c492",
     "items": [
       {
         "content": "af172acd"
       }
     ],
-    "metadata": "eec15bdb"
+    "metadata": "3a10fb43"
   },
-  "/blog/tags/hello-c12": {
+  "/PuzzleDroid/blog/tags/hello-825": {
     "component": "6875c492",
     "items": [
       {
@@ -64,34 +64,34 @@
         "content": "3570154c"
       }
     ],
-    "metadata": "3a6eb64e"
+    "metadata": "1756b9d8"
   },
-  "/blog/tags/hola-084": {
+  "/PuzzleDroid/blog/tags/hola-16d": {
     "component": "6875c492",
     "items": [
       {
         "content": "8e9f0a8a"
       }
     ],
-    "metadata": "31d49d87"
+    "metadata": "bb4648f6"
   },
-  "/blog/welcome-cb0": {
+  "/PuzzleDroid/blog/welcome-d2a": {
     "component": "ccc49370",
     "content": "2868cdab"
   },
-  "/docs-563": {
+  "/PuzzleDroid/docs-1fb": {
     "component": "1be78505",
-    "docsMetadata": "20ac7829"
+    "docsMetadata": "dbd1ec1d"
   },
-  "/docs/-87d": {
+  "/PuzzleDroid/docs/-f72": {
     "component": "17896441",
     "content": "b2f90839"
   },
-  "/docs/doc2-fd3": {
+  "/PuzzleDroid/docs/doc2-1b2": {
     "component": "17896441",
     "content": "df361e2b"
   },
-  "/docs/mdx-955": {
+  "/PuzzleDroid/docs/mdx-345": {
     "component": "17896441",
     "content": "ce3e42ad"
   }

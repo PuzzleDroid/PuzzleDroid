@@ -1,8 +1,8 @@
 module.exports = {
   title: "PuzzleDroid Help",
   tagline: "The place where to find out how to solve puzzles in PuzzleDroid",
-  url: "https://your-docusaurus-test-site.com",
-  baseUrl: "/",
+  url: "https://puzzledroid.github.io/",
+  baseUrl: "/PuzzleDroid/",
   onBrokenLinks: "throw",
   favicon: "img/favicon.ico",
   organizationName: "facebook", // Usually your GitHub org/user name.

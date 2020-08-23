@@ -1,16 +1,16 @@
 {
-  "permalink": "/blog/hola",
+  "permalink": "/PuzzleDroid/blog/hola",
   "source": "@site/blog/2019-05-28-hola.md",
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet",
   "date": "2019-05-28T00:00:00.000Z",
   "tags": [
     {
       "label": "hola",
-      "permalink": "/blog/tags/hola"
+      "permalink": "/PuzzleDroid/blog/tags/hola"
     },
     {
       "label": "docusaurus",
-      "permalink": "/blog/tags/docusaurus"
+      "permalink": "/PuzzleDroid/blog/tags/docusaurus"
     }
   ],
   "title": "Hola",
@@ -18,6 +18,6 @@
   "truncated": false,
   "prevItem": {
     "title": "Hello",
-    "permalink": "/blog/hello-world"
+    "permalink": "/PuzzleDroid/blog/hello-world"
   }
 }

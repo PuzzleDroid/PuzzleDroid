@@ -1,25 +1,25 @@
 {
   "docusaurus-plugin-content-docs": {
     "default": {
-      "path": "/docs",
+      "path": "/PuzzleDroid/docs",
       "latestVersionName": null,
       "versions": [
         {
           "name": null,
-          "path": "/docs",
+          "path": "/PuzzleDroid/docs",
           "mainDocId": "doc1",
           "docs": [
             {
               "id": "doc1",
-              "path": "/docs/"
+              "path": "/PuzzleDroid/docs/"
             },
             {
               "id": "doc2",
-              "path": "/docs/doc2"
+              "path": "/PuzzleDroid/docs/doc2"
             },
             {
               "id": "mdx",
-              "path": "/docs/mdx"
+              "path": "/PuzzleDroid/docs/mdx"
             }
           ]
         }

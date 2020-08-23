@@ -5,15 +5,15 @@
   "title": "The end of the game",
   "description": "The game never ends, the number of levels is endless but you'll get too much pieces to move, but we know you love the challenges ;)",
   "source": "@site/docs/doc2.md",
-  "permalink": "/docs/doc2",
+  "permalink": "/PuzzleDroid/docs/doc2",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/doc2.md",
   "sidebar": "someSidebar",
   "previous": {
     "title": "How to solve it",
-    "permalink": "/docs/"
+    "permalink": "/PuzzleDroid/docs/"
   },
   "next": {
     "title": "How can I get an user?",
-    "permalink": "/docs/mdx"
+    "permalink": "/PuzzleDroid/docs/mdx"
   }
 }

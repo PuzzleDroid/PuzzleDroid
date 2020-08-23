@@ -1,8 +1,8 @@
 export default {
   "title": "PuzzleDroid Help",
   "tagline": "The place where to find out how to solve puzzles in PuzzleDroid",
-  "url": "https://your-docusaurus-test-site.com",
-  "baseUrl": "/",
+  "url": "https://puzzledroid.github.io/",
+  "baseUrl": "/PuzzleDroid/",
   "onBrokenLinks": "throw",
   "favicon": "img/favicon.ico",
   "organizationName": "facebook",
@@ -79,11 +79,11 @@ export default {
       {
         "docs": {
           "homePageId": "doc1",
-          "sidebarPath": "/Users/JAVI/StudioProjects/PuzzleDroid/docs/sidebars.js",
+          "sidebarPath": "/Users/JAVI/StudioProjects/PuzzleDroid/help/sidebars.js",
           "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/"
         },
         "theme": {
-          "customCss": "/Users/JAVI/StudioProjects/PuzzleDroid/docs/src/css/custom.css"
+          "customCss": "/Users/JAVI/StudioProjects/PuzzleDroid/help/src/css/custom.css"
         }
       }
     ]
