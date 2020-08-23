@@ -4,6 +4,7 @@ package com.awaredevelopers.puzzledroid
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -14,9 +15,11 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
 import com.awaredevelopers.puzzledroid.db.AppDatabase
 import com.awaredevelopers.puzzledroid.db.entity.UserEntity
+import com.firebase.ui.auth.AuthUI
 import com.google.android.material.navigation.NavigationView
-
-
+import android.content.Intent
+import com.awaredevelopers.puzzledroid.ui.intentActivity.SigInIntentActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -71,5 +74,15 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    fun signOut(view: View) {
+        AuthUI.getInstance().signOut(this).addOnCompleteListener {
+            // FirebaseAuth.getInstance().currentUser.isAnonymous
+            // FirebaseAuth.getInstance().currentUser.displayName
+            val intent = Intent(this, SigInIntentActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }
