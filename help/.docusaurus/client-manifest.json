@@ -3,161 +3,178 @@
     "main"
   ],
   "origins": {
-    "common": [
+    "2": [
+      0,
       1,
-      2,
-      4,
-      5,
-      6,
-      10,
-      11,
-      12,
-      15,
-      16,
-      17,
-      18,
-      20,
-      23,
+      3,
       24,
       25,
       26,
       27,
+      28,
+      2
+    ],
+    "common": [
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      11,
+      12,
+      13,
+      16,
+      17,
+      18,
+      19,
+      21,
+      24,
+      25,
+      26,
+      27,
+      28,
       0
     ],
     "styles": [
       0,
       2,
-      4,
-      16,
-      21,
+      3,
+      5,
       22,
       23,
       24,
       25,
       26,
       27,
+      28,
       1
     ],
     "@theme/BlogTagsListPage": [
       0,
       1,
-      2
+      2,
+      3
     ],
     "~blog/puzzle-droid-blog-tags-hello-a97.json": [
-      3
+      4
     ],
     "@theme/DocItem": [
       0,
       1,
-      4
+      5
     ],
     "@site/blog/2019-05-30-welcome.md": [
       0,
-      5
+      6
     ],
     "@site/blog/2019-05-29-hello-world.md?truncated=true": [
       0,
-      6
-    ],
-    "~blog/puzzle-droid-blog-tags-facebook-385.json": [
       7
     ],
-    "~blog/puzzle-droid-blog-6f7.json": [
+    "~blog/puzzle-droid-blog-tags-facebook-385.json": [
       8
     ],
-    "~blog/puzzle-droid-blog-tags-tags-1d1.json": [
+    "~blog/puzzle-droid-blog-6f7.json": [
       9
+    ],
+    "~blog/puzzle-droid-blog-tags-tags-1d1.json": [
+      10
     ],
     "@site/blog/2019-05-28-hola.md?truncated=true": [
       0,
-      10
+      11
     ],
     "@site/blog/2019-05-30-welcome.md?truncated=true": [
       0,
-      11
+      12
     ],
     "@site/docs/doc1.md": [
       0,
-      12
-    ],
-    "~blog/puzzle-droid-blog-tags-docusaurus-7e4.json": [
       13
     ],
-    "~blog/puzzle-droid-blog-tags-hola-ee4.json": [
+    "~blog/puzzle-droid-blog-tags-docusaurus-7e4.json": [
       14
+    ],
+    "~blog/puzzle-droid-blog-tags-hola-ee4.json": [
+      15
     ],
     "@site/blog/2019-05-28-hola.md": [
       0,
-      15
+      16
     ],
     "@site/src/pages/index.js": [
       0,
-      1,
-      16
+      17
     ],
     "@site/docs/mdx.md": [
       0,
-      17
+      18
     ],
     "@site/blog/2019-05-29-hello-world.md": [
       0,
-      18
+      19
     ],
     "~docs/puzzle-droid-docs-route-468.json": [
-      19
+      20
     ],
     "@site/docs/doc2.md": [
       0,
-      20
+      21
     ],
     "@generated/docusaurus.config": [
       1,
-      22,
-      21
+      23,
+      22
     ],
     "main": [
       1,
-      22,
-      21
+      23,
+      22
     ],
     "runtime~main": [
       1,
-      21,
-      22
+      22,
+      23
     ],
     "@theme/BlogListPage": [
       0,
       1,
-      23
+      2,
+      24
     ],
     "@theme/BlogPostPage": [
       0,
       1,
-      24
+      2,
+      25
     ],
     "@theme/BlogTagsPostsPage": [
       0,
       1,
-      25
+      2,
+      26
     ],
     "@theme/DocPage": [
       0,
       1,
-      27
+      2,
+      28
     ],
     "@theme/NotFound": [
       0,
       1,
-      27
+      2,
+      28
     ]
   },
   "assets": {
     "0": {
       "js": [
         {
-          "file": "common.a6d30c12.js",
-          "hash": "cc6aa1df26a4e494ce58",
-          "publicPath": "/PuzzleDroid/common.a6d30c12.js"
+          "file": "common.45bfb65a.js",
+          "hash": "f02e57fdc2c367d6df16",
+          "publicPath": "/PuzzleDroid/common.45bfb65a.js"
         }
       ]
     },
@@ -180,230 +197,239 @@
     "2": {
       "js": [
         {
-          "file": "01a85c17.1f5e5d9a.js",
-          "hash": "e955af1a9fcbe97575fc",
-          "publicPath": "/PuzzleDroid/01a85c17.1f5e5d9a.js"
+          "file": "2.3e4cd62c.js",
+          "hash": "1172af512ebd4476f2c1",
+          "publicPath": "/PuzzleDroid/2.3e4cd62c.js"
         }
       ]
     },
     "3": {
       "js": [
         {
-          "file": "1756b9d8.46b1ce1a.js",
-          "hash": "40dce581aab82a56b96d",
-          "publicPath": "/PuzzleDroid/1756b9d8.46b1ce1a.js"
+          "file": "01a85c17.b7a089fb.js",
+          "hash": "07f57789f86675a06cbf",
+          "publicPath": "/PuzzleDroid/01a85c17.b7a089fb.js"
         }
       ]
     },
     "4": {
       "js": [
         {
-          "file": "17896441.84182ef3.js",
-          "hash": "e7591086bd44128e8e8c",
-          "publicPath": "/PuzzleDroid/17896441.84182ef3.js"
+          "file": "1756b9d8.2f9daacd.js",
+          "hash": "f3fbdf2eba78de45d673",
+          "publicPath": "/PuzzleDroid/1756b9d8.2f9daacd.js"
         }
       ]
     },
     "5": {
       "js": [
         {
-          "file": "2868cdab.82093209.js",
-          "hash": "31a14ccaac02b1c44517",
-          "publicPath": "/PuzzleDroid/2868cdab.82093209.js"
+          "file": "17896441.63dbdb53.js",
+          "hash": "c6314d3e8301abb1a428",
+          "publicPath": "/PuzzleDroid/17896441.63dbdb53.js"
         }
       ]
     },
     "6": {
       "js": [
         {
-          "file": "3570154c.b23a155e.js",
-          "hash": "a10f85eb3879f32e1d64",
-          "publicPath": "/PuzzleDroid/3570154c.b23a155e.js"
+          "file": "2868cdab.d9219f90.js",
+          "hash": "3f044d06760dac063668",
+          "publicPath": "/PuzzleDroid/2868cdab.d9219f90.js"
         }
       ]
     },
     "7": {
       "js": [
         {
-          "file": "3a10fb43.b5f1db45.js",
-          "hash": "e708e350ca2ef4fc4938",
-          "publicPath": "/PuzzleDroid/3a10fb43.b5f1db45.js"
+          "file": "3570154c.bc462c68.js",
+          "hash": "cdc906b9d9592e39df3d",
+          "publicPath": "/PuzzleDroid/3570154c.bc462c68.js"
         }
       ]
     },
     "8": {
       "js": [
         {
-          "file": "5111b39c.b2b2eac4.js",
-          "hash": "ee8b2565ba0816185ef1",
-          "publicPath": "/PuzzleDroid/5111b39c.b2b2eac4.js"
+          "file": "3a10fb43.03c31cdb.js",
+          "hash": "2e7d892ddad216936472",
+          "publicPath": "/PuzzleDroid/3a10fb43.03c31cdb.js"
         }
       ]
     },
     "9": {
       "js": [
         {
-          "file": "7e09f67c.44d28820.js",
-          "hash": "921876c4f4f9721edd10",
-          "publicPath": "/PuzzleDroid/7e09f67c.44d28820.js"
+          "file": "5111b39c.26fc72da.js",
+          "hash": "400f7c52d4d1c8befeed",
+          "publicPath": "/PuzzleDroid/5111b39c.26fc72da.js"
         }
       ]
     },
     "10": {
       "js": [
         {
-          "file": "8e9f0a8a.e54e154f.js",
-          "hash": "6c3759c48babf9d75508",
-          "publicPath": "/PuzzleDroid/8e9f0a8a.e54e154f.js"
+          "file": "7e09f67c.9966e3d4.js",
+          "hash": "9228fe88943be6de6ed4",
+          "publicPath": "/PuzzleDroid/7e09f67c.9966e3d4.js"
         }
       ]
     },
     "11": {
       "js": [
         {
-          "file": "af172acd.8fea58d4.js",
-          "hash": "d420d4d0faef4e5032cc",
-          "publicPath": "/PuzzleDroid/af172acd.8fea58d4.js"
+          "file": "8e9f0a8a.63dae6b4.js",
+          "hash": "5d485832d579a615d3fa",
+          "publicPath": "/PuzzleDroid/8e9f0a8a.63dae6b4.js"
         }
       ]
     },
     "12": {
       "js": [
         {
-          "file": "b2f90839.374b1b0c.js",
-          "hash": "be4efca41e3c06534ba6",
-          "publicPath": "/PuzzleDroid/b2f90839.374b1b0c.js"
+          "file": "af172acd.76aa7d9c.js",
+          "hash": "7dfcc57f56b06bb35460",
+          "publicPath": "/PuzzleDroid/af172acd.76aa7d9c.js"
         }
       ]
     },
     "13": {
       "js": [
         {
-          "file": "b3c22256.c0031476.js",
-          "hash": "4cb3a9cbee824acf4c12",
-          "publicPath": "/PuzzleDroid/b3c22256.c0031476.js"
+          "file": "b2f90839.2c57efba.js",
+          "hash": "e46b61dbdea48a3d6188",
+          "publicPath": "/PuzzleDroid/b2f90839.2c57efba.js"
         }
       ]
     },
     "14": {
       "js": [
         {
-          "file": "bb4648f6.a6125168.js",
-          "hash": "b876899de62814f7a714",
-          "publicPath": "/PuzzleDroid/bb4648f6.a6125168.js"
+          "file": "b3c22256.6e254f65.js",
+          "hash": "f108a87c271f9742439c",
+          "publicPath": "/PuzzleDroid/b3c22256.6e254f65.js"
         }
       ]
     },
     "15": {
       "js": [
         {
-          "file": "bdd709f1.fcab50ac.js",
-          "hash": "5d77955456ef47de2d80",
-          "publicPath": "/PuzzleDroid/bdd709f1.fcab50ac.js"
+          "file": "bb4648f6.35dd0329.js",
+          "hash": "30ec3f380210b63338dd",
+          "publicPath": "/PuzzleDroid/bb4648f6.35dd0329.js"
         }
       ]
     },
     "16": {
       "js": [
         {
-          "file": "c4f5d8e4.4bcda452.js",
-          "hash": "f43447d88574ad4e41e4",
-          "publicPath": "/PuzzleDroid/c4f5d8e4.4bcda452.js"
+          "file": "bdd709f1.932ba6b8.js",
+          "hash": "aec6085fa7b7e64439b9",
+          "publicPath": "/PuzzleDroid/bdd709f1.932ba6b8.js"
         }
       ]
     },
     "17": {
       "js": [
         {
-          "file": "ce3e42ad.668e9af8.js",
-          "hash": "5cfc31327e269cde8e40",
-          "publicPath": "/PuzzleDroid/ce3e42ad.668e9af8.js"
+          "file": "c4f5d8e4.c5de609a.js",
+          "hash": "bb3cf38775909daf7fa8",
+          "publicPath": "/PuzzleDroid/c4f5d8e4.c5de609a.js"
         }
       ]
     },
     "18": {
       "js": [
         {
-          "file": "d610846f.f926ce0d.js",
-          "hash": "0d87c4c643df79921424",
-          "publicPath": "/PuzzleDroid/d610846f.f926ce0d.js"
+          "file": "ce3e42ad.b55c5b39.js",
+          "hash": "ba77e68239adb9a591af",
+          "publicPath": "/PuzzleDroid/ce3e42ad.b55c5b39.js"
         }
       ]
     },
     "19": {
       "js": [
         {
-          "file": "dbd1ec1d.8d5ad098.js",
-          "hash": "6d0f336dbe34533a2cd4",
-          "publicPath": "/PuzzleDroid/dbd1ec1d.8d5ad098.js"
+          "file": "d610846f.842aec7f.js",
+          "hash": "de56865ded75d97b4c18",
+          "publicPath": "/PuzzleDroid/d610846f.842aec7f.js"
         }
       ]
     },
     "20": {
       "js": [
         {
-          "file": "df361e2b.725244a9.js",
-          "hash": "559c4aa213c5b9e36640",
-          "publicPath": "/PuzzleDroid/df361e2b.725244a9.js"
+          "file": "dbd1ec1d.e42f948f.js",
+          "hash": "6df6d73c6f25863b68ca",
+          "publicPath": "/PuzzleDroid/dbd1ec1d.e42f948f.js"
         }
       ]
     },
     "21": {
       "js": [
         {
-          "file": "main.0fd4ab19.js",
-          "hash": "d204fdbe05aec9c8a9bf",
-          "publicPath": "/PuzzleDroid/main.0fd4ab19.js"
+          "file": "df361e2b.b7c8967a.js",
+          "hash": "654f5b933d0aada52292",
+          "publicPath": "/PuzzleDroid/df361e2b.b7c8967a.js"
         }
       ]
     },
     "22": {
       "js": [
         {
-          "file": "runtime~main.9ae4a36c.js",
-          "hash": "144401a64e9702262495",
-          "publicPath": "/PuzzleDroid/runtime~main.9ae4a36c.js"
+          "file": "main.504b8f77.js",
+          "hash": "52ad92afe259c4692dd8",
+          "publicPath": "/PuzzleDroid/main.504b8f77.js"
         }
       ]
     },
     "23": {
       "js": [
         {
-          "file": "23.7afc12a5.js",
-          "hash": "2de5e8de046202037194",
-          "publicPath": "/PuzzleDroid/23.7afc12a5.js"
+          "file": "runtime~main.29fda0d2.js",
+          "hash": "fc32c5f6d000d32da19c",
+          "publicPath": "/PuzzleDroid/runtime~main.29fda0d2.js"
         }
       ]
     },
     "24": {
       "js": [
         {
-          "file": "24.9af7173e.js",
-          "hash": "8f3d4a365f4d278bd65b",
-          "publicPath": "/PuzzleDroid/24.9af7173e.js"
+          "file": "24.e2296045.js",
+          "hash": "eca463aba41d4a47e2d1",
+          "publicPath": "/PuzzleDroid/24.e2296045.js"
         }
       ]
     },
     "25": {
       "js": [
         {
-          "file": "25.0d847b29.js",
-          "hash": "9380d8f0d012c7b6e9f2",
-          "publicPath": "/PuzzleDroid/25.0d847b29.js"
+          "file": "25.5946afd3.js",
+          "hash": "4172b5bee76f15d0316a",
+          "publicPath": "/PuzzleDroid/25.5946afd3.js"
         }
       ]
     },
-    "27": {
+    "26": {
       "js": [
         {
-          "file": "26.f8f26445.js",
-          "hash": "913c29997a0e0de0e6c2",
-          "publicPath": "/PuzzleDroid/26.f8f26445.js"
+          "file": "26.30fb2e48.js",
+          "hash": "4fa1d8157f4708ab732b",
+          "publicPath": "/PuzzleDroid/26.30fb2e48.js"
+        }
+      ]
+    },
+    "28": {
+      "js": [
+        {
+          "file": "27.34fbc607.js",
+          "hash": "c687b539ed8a839a9360",
+          "publicPath": "/PuzzleDroid/27.34fbc607.js"
         },
         {
-          "file": "27.acb2183b.js",
-          "hash": "1a639697568383e8649a",
-          "publicPath": "/PuzzleDroid/27.acb2183b.js"
+          "file": "28.1e0b1d39.js",
+          "hash": "e01a5b5702b63e305fd7",
+          "publicPath": "/PuzzleDroid/28.1e0b1d39.js"
         }
       ]
     }

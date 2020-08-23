@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[14],{72:function(o){o.exports=JSON.parse('{"allTagsPath":"/PuzzleDroid/blog/tags","slug":"hola","name":"hola","count":1,"permalink":"/PuzzleDroid/blog/tags/hola"}')}}]);
