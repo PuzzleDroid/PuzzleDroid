@@ -332,9 +332,9 @@
     "17": {
       "js": [
         {
-          "file": "c4f5d8e4.c5de609a.js",
-          "hash": "bb3cf38775909daf7fa8",
-          "publicPath": "/PuzzleDroid/c4f5d8e4.c5de609a.js"
+          "file": "c4f5d8e4.27a76007.js",
+          "hash": "d98cb750be43221d13ef",
+          "publicPath": "/PuzzleDroid/c4f5d8e4.27a76007.js"
         }
       ]
     },
@@ -386,9 +386,9 @@
     "23": {
       "js": [
         {
-          "file": "runtime~main.29fda0d2.js",
-          "hash": "fc32c5f6d000d32da19c",
-          "publicPath": "/PuzzleDroid/runtime~main.29fda0d2.js"
+          "file": "runtime~main.ba7ca2d7.js",
+          "hash": "b021dbe149c8def84d38",
+          "publicPath": "/PuzzleDroid/runtime~main.ba7ca2d7.js"
         }
       ]
     },

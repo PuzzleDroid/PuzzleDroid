@@ -8,11 +8,6 @@ export default [
   exact: true,
 },
 {
-  path: '/PuzzleDroid/__docusaurus/debug',
-  component: ComponentCreator('/PuzzleDroid/__docusaurus/debug','5e2'),
-  exact: true,
-},
-{
   path: '/PuzzleDroid/blog',
   component: ComponentCreator('/PuzzleDroid/blog','b1c'),
   exact: true,

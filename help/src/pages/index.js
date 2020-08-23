@@ -5,7 +5,6 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
-  console.log(context);
   return <Redirect to={`${siteConfig.baseUrl}docs`} />;
 }
 

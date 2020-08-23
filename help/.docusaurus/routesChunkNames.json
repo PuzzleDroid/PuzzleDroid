@@ -1,101 +1,98 @@
 {
   "/PuzzleDroid/-c2c": {
-    "component": "component---site-src-pages-index-jsc-4-f-f99",
-    "config": "config---puzzle-droid-5-e-9-80d"
-  },
-  "/PuzzleDroid/__docusaurus/debug-5e2": {
-    "component": "component---theme-debugd-45-c28"
+    "component": "c4f5d8e4",
+    "config": "5e9f5e1a"
   },
   "/PuzzleDroid/blog-b1c": {
-    "component": "component---theme-blog-list-pagea-6-a-7ba",
+    "component": "a6aa9e1f",
     "items": [
       {
-        "content": "content---puzzle-droid-blogaf-1-ac8"
+        "content": "af172acd"
       },
       {
-        "content": "content---puzzle-droid-blog-357-904"
+        "content": "3570154c"
       },
       {
-        "content": "content---puzzle-droid-blog-8-e-9-5b5"
+        "content": "8e9f0a8a"
       }
     ],
-    "metadata": "metadata---puzzle-droid-blog-511-8e0"
+    "metadata": "5111b39c"
   },
   "/PuzzleDroid/blog/hello-world-82d": {
-    "component": "component---theme-blog-post-pageccc-cab",
-    "content": "content---puzzle-droid-blog-hello-worldd-61-c69"
+    "component": "ccc49370",
+    "content": "d610846f"
   },
   "/PuzzleDroid/blog/hola-3c0": {
-    "component": "component---theme-blog-post-pageccc-cab",
-    "content": "content---puzzle-droid-blog-holabdd-2bf"
+    "component": "ccc49370",
+    "content": "bdd709f1"
   },
   "/PuzzleDroid/blog/tags-fdf": {
-    "component": "component---theme-blog-tags-list-page-01-a-d0b",
-    "tags": "tags---puzzle-droid-blog-tags-7-e-0-211"
+    "component": "01a85c17",
+    "tags": "7e09f67c"
   },
   "/PuzzleDroid/blog/tags/docusaurus-385": {
-    "component": "component---theme-blog-tags-posts-page-687-b6c",
+    "component": "6875c492",
     "items": [
       {
-        "content": "content---puzzle-droid-blogaf-1-ac8"
+        "content": "af172acd"
       },
       {
-        "content": "content---puzzle-droid-blog-357-904"
+        "content": "3570154c"
       },
       {
-        "content": "content---puzzle-droid-blog-8-e-9-5b5"
+        "content": "8e9f0a8a"
       }
     ],
-    "metadata": "metadata---puzzle-droid-blog-tags-docusaurusb-3-c-04c"
+    "metadata": "b3c22256"
   },
   "/PuzzleDroid/blog/tags/facebook-845": {
-    "component": "component---theme-blog-tags-posts-page-687-b6c",
+    "component": "6875c492",
     "items": [
       {
-        "content": "content---puzzle-droid-blogaf-1-ac8"
+        "content": "af172acd"
       }
     ],
-    "metadata": "metadata---puzzle-droid-blog-tags-facebook-3-a-1-2be"
+    "metadata": "3a10fb43"
   },
   "/PuzzleDroid/blog/tags/hello-825": {
-    "component": "component---theme-blog-tags-posts-page-687-b6c",
+    "component": "6875c492",
     "items": [
       {
-        "content": "content---puzzle-droid-blogaf-1-ac8"
+        "content": "af172acd"
       },
       {
-        "content": "content---puzzle-droid-blog-357-904"
+        "content": "3570154c"
       }
     ],
-    "metadata": "metadata---puzzle-droid-blog-tags-hello-175-231"
+    "metadata": "1756b9d8"
   },
   "/PuzzleDroid/blog/tags/hola-16d": {
-    "component": "component---theme-blog-tags-posts-page-687-b6c",
+    "component": "6875c492",
     "items": [
       {
-        "content": "content---puzzle-droid-blog-8-e-9-5b5"
+        "content": "8e9f0a8a"
       }
     ],
-    "metadata": "metadata---puzzle-droid-blog-tags-holabb-4-d5e"
+    "metadata": "bb4648f6"
   },
   "/PuzzleDroid/blog/welcome-d2a": {
-    "component": "component---theme-blog-post-pageccc-cab",
-    "content": "content---puzzle-droid-blog-welcome-286-cd2"
+    "component": "ccc49370",
+    "content": "2868cdab"
   },
   "/PuzzleDroid/docs-1fb": {
-    "component": "component---theme-doc-page-1-be-9be",
-    "docsMetadata": "docsMetadata---puzzle-droid-docsdbd-1cf"
+    "component": "1be78505",
+    "docsMetadata": "dbd1ec1d"
   },
   "/PuzzleDroid/docs/-f72": {
-    "component": "component---theme-doc-item-178-a40",
-    "content": "content---puzzle-droid-docs-b-2-f-3a8"
+    "component": "17896441",
+    "content": "b2f90839"
   },
   "/PuzzleDroid/docs/doc2-1b2": {
-    "component": "component---theme-doc-item-178-a40",
-    "content": "content---puzzle-droid-docs-doc-2-df-3-957"
+    "component": "17896441",
+    "content": "df361e2b"
   },
   "/PuzzleDroid/docs/mdx-345": {
-    "component": "component---theme-doc-item-178-a40",
-    "content": "content---puzzle-droid-docs-mdxce-3-353"
+    "component": "17896441",
+    "content": "ce3e42ad"
   }
 }
