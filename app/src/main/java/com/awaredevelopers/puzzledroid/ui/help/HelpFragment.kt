@@ -13,7 +13,7 @@ import com.awaredevelopers.puzzledroid.R
 class HelpFragment: Fragment()  {
 
     companion object{
-        const val URL = "http://localhost:3000"
+        const val URL = "https://puzzledroid.github.io/PuzzleDroid/"
     }
 
     private lateinit var helpViewModel: HelpViewModel
