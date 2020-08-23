@@ -5,7 +5,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
-  return <Redirect to={`${siteConfig.baseUrl}docs`} />;
+  return <Redirect to={`/PuzzleDroid/docs`} />;
 }
 
 export default Home;
