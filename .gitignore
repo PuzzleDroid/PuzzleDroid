@@ -12,3 +12,4 @@
 /captures
 .externalNativeBuild
 .cxx
+/help/node_modules

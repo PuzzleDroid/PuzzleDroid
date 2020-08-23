@@ -5,13 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.awaredevelopers.puzzledroid.R
 import kotlin.system.exitProcess
-import com.awaredevelopers.puzzledroid.db.entity.ScoreEntity
 
 class HomeFragment : Fragment() {
 

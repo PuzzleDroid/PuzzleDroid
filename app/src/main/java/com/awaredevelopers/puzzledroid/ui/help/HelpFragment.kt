@@ -13,7 +13,7 @@ import com.awaredevelopers.puzzledroid.R
 class HelpFragment: Fragment()  {
 
     companion object{
-        const val URL = "https://gustavoquinalha.github.io/jekyll-help-center-theme/"
+        const val URL = "http://localhost:3000"
     }
 
     private lateinit var helpViewModel: HelpViewModel

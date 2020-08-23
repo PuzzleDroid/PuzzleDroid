@@ -15,7 +15,6 @@ import com.google.firebase.ktx.Firebase
 
 class SigInIntentActivity: AppCompatActivity() {
     val providers = arrayListOf(
-        AuthUI.IdpConfig.EmailBuilder().build(),
         AuthUI.IdpConfig.GoogleBuilder().build(),
         AuthUI.IdpConfig.AnonymousBuilder().build()
     )
