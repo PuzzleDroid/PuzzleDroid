@@ -3,12 +3,14 @@
     <string name="navigation_drawer_open">Abrir navegador</string>
     <string name="navigation_drawer_close">Cerrar Navegador</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_sign_out" translatable="false">Desconectarse</string>
 
     <string name="action_settings">Configuración</string>
 
     <string name="menu_home">PuzzleDroid</string>
     <string name="menu_start_game">Empezar NPuzzle</string>
     <string name="menu_scores">Puntuaciones</string>
+    <string name="menu_global_scores">Puntuaciones Mundiales</string>
     <string name="menu_settings">Configuración</string>
     <string name="menu_help">Ayuda</string>
 

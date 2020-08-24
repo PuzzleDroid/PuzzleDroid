@@ -15,6 +15,9 @@
             android:id="@+id/action_HomeFragment_to_ScoresFragment"
             app:destination="@id/nav_scores" />
         <action
+            android:id="@+id/action_HomeFragment_to_GlobalScoresFragment"
+            app:destination="@id/nav_global_scores" />
+        <action
             android:id="@+id/action_HomeFragment_to_SettingsFragment"
             app:destination="@id/nav_settings" />
         <action
@@ -41,6 +44,12 @@
 
     <fragment
         android:id="@+id/nav_scores"
+        android:name="com.awaredevelopers.puzzledroid.ui.scores.ScoresFragment"
+        android:label="@string/menu_scores"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/nav_global_scores"
         android:name="com.awaredevelopers.puzzledroid.ui.scores.ScoresFragment"
         android:label="@string/menu_scores"
         tools:layout="@layout/fragment_settings" />

@@ -32,6 +32,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_HomeFragment_to_ScoresFragment)
         }
 
+        root.findViewById<Button>(R.id.global_score).setOnClickListener {
+            findNavController().navigate(R.id.action_HomeFragment_to_GlobalScoresFragment)
+        }
+
         root.findViewById<Button>(R.id.exit).setOnClickListener {
             exitProcess(0)
         }

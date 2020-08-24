@@ -19,7 +19,6 @@ import com.firebase.ui.auth.AuthUI
 import com.google.android.material.navigation.NavigationView
 import android.content.Intent
 import com.awaredevelopers.puzzledroid.ui.intentActivity.SigInIntentActivity
-import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_home, R.id.nav_scores, R.id.nav_settings, R.id.nav_help), drawerLayout)
+                R.id.nav_home, R.id.nav_scores, R.id.nav_global_scores, R.id.nav_settings, R.id.nav_help), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 

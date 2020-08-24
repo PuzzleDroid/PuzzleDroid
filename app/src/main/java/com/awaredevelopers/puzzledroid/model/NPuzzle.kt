@@ -10,7 +10,7 @@ import com.awaredevelopers.puzzledroid.utility.IS_DEBUG
 import com.awaredevelopers.puzzledroid.utility.NPuzzlePortion
 
 abstract class NPuzzle : AppCompatActivity{
-    protected enum class GameMode {
+    enum class GameMode {
         PRELOADED_IMG,
         RANDOM_GALLERY_IMG,
         CAM_PICTURE_IMG,
@@ -23,7 +23,7 @@ abstract class NPuzzle : AppCompatActivity{
     protected var rows = 0
     var id = 0
     var level = MainActivity.user.level
-    private var gameMode: GameMode
+    var gameMode: GameMode
     protected var bitmap: Bitmap
     var nPuzzlePortions: List<NPuzzlePortion>
 
