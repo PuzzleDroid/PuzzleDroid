@@ -14,14 +14,14 @@ class GlobalScoresAdapter(private val context: Context) : BaseAdapter() {
     private val inflater: LayoutInflater
             = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-    private var dataSource: List<ScoreEntity> = listOf()
+    private var dataSource: HashMap<String, ScoreEntity> = HashMap()
 
     override fun getCount(): Int {
         return dataSource.size
     }
 
     override fun getItem(position: Int): Any {
-        return dataSource[position]
+        return ArrayList<ScoreEntity>(dataSource.values)[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -48,7 +48,7 @@ class GlobalScoresAdapter(private val context: Context) : BaseAdapter() {
         return rowView
     }
 
-    open fun setScores(scores: List<ScoreEntity>) {
+    open fun setScores(scores: HashMap<String, ScoreEntity>) {
         dataSource = scores
 
         this.notifyDataSetChanged();

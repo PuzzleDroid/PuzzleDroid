@@ -18,6 +18,17 @@ class ScoreEntity(
     @NotNull
     var imgName: String
 ) {
+    constructor(): this(
+        0,
+        0,
+        "",
+        ""
+    ) {
+
+    }
+
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
+
+
 }

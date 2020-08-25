@@ -17,11 +17,6 @@ import com.awaredevelopers.puzzledroid.utility.AudioFactory.pauseAudio
 import com.awaredevelopers.puzzledroid.utility.AudioFactory.resumeAudio
 import com.awaredevelopers.puzzledroid.utility.AudioFactory.stopAudio
 import kotlinx.android.synthetic.main.activity_npuzzle.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import java.net.URL
-import kotlin.Exception
 
 @Suppress("DEPRECATION")
 class NPuzzleActivity : AppCompatActivity() {
@@ -44,6 +39,7 @@ class NPuzzleActivity : AppCompatActivity() {
             4 -> {
                 val bmp: Bitmap = BitmapFactory.decodeByteArray(intent.extras?.getByteArray("bmp"), 0, intent.extras?.getByteArray("bmp")!!.count())
                 nPuzzle = NPuzzleFirebase(applicationContext, bmp)
+                nPuzzle.imgName = intent.extras?.getString("imageUri")!!
             }
             else ->  Log.d(TAG, "MODE SELECTED OUT OF RANGE!")
         }

@@ -68,7 +68,9 @@ class IntentActivity : AppCompatActivity() {
                         result.add(item.downloadUrl)
                     }
 
-                    result[0].addOnSuccessListener { uri ->
+                    val range = (0 until result.count())
+
+                    result[range.random()].addOnSuccessListener { uri ->
                         continuation.resume(uri)
                     }
                 }

@@ -1,10 +1,12 @@
 package com.awaredevelopers.puzzledroid
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -12,13 +14,17 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.*
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.awaredevelopers.puzzledroid.db.AppDatabase
 import com.awaredevelopers.puzzledroid.db.entity.UserEntity
+import com.awaredevelopers.puzzledroid.ui.intentActivity.SigInIntentActivity
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.navigation.NavigationView
-import android.content.Intent
-import com.awaredevelopers.puzzledroid.ui.intentActivity.SigInIntentActivity
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,11 +41,21 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
+
         val navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration = AppBarConfiguration(setOf(
                 R.id.nav_home, R.id.nav_scores, R.id.nav_global_scores, R.id.nav_settings, R.id.nav_help), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val headerView: View = navView.getHeaderView(0)
+
+        val username: TextView = headerView.findViewById(R.id.username)
+
+        username.text = Firebase.auth.currentUser?.displayName
+
+        val sigin: TextView = headerView.findViewById(R.id.sign_in)
+        sigin.text = "Sign In"
 
         try {
             val db = AppDatabase.getInstance(this)
@@ -77,8 +93,6 @@ class MainActivity : AppCompatActivity() {
 
     fun signOut(view: View) {
         AuthUI.getInstance().signOut(this).addOnCompleteListener {
-            // FirebaseAuth.getInstance().currentUser.isAnonymous
-            // FirebaseAuth.getInstance().currentUser.displayName
             val intent = Intent(this, SigInIntentActivity::class.java)
             startActivity(intent)
             finish()
