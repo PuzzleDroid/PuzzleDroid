@@ -6,24 +6,31 @@ import android.content.Context
 import android.os.Handler
 import android.os.SystemClock
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.cardview.widget.CardView
-import androidx.lifecycle.LiveData
+import com.awaredevelopers.puzzledroid.MainActivity
 import com.awaredevelopers.puzzledroid.R
 import com.awaredevelopers.puzzledroid.db.AppDatabase
 import com.awaredevelopers.puzzledroid.db.entity.ScoreEntity
-import com.awaredevelopers.puzzledroid.MainActivity
 import com.awaredevelopers.puzzledroid.model.NPuzzle
 import com.awaredevelopers.puzzledroid.utility.AudioFactory
 import com.awaredevelopers.puzzledroid.utility.AudioFactory.AudioEffect
 import com.awaredevelopers.puzzledroid.utility.NPuzzlePortion
 import com.awaredevelopers.puzzledroid.utility.NPuzzleRules
 import com.awaredevelopers.puzzledroid.utility.NPuzzleRules.getEmptySpace
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_npuzzle.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.coroutines.CoroutineContext
 
@@ -154,17 +161,24 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
                             excludedImagesMutable.add(nPuzzle.imgName)
                             MainActivity.user.excludedImages = excludedImagesMutable
 
-                            //Save score
                             val score = ScoreEntity(
                                 nPuzzle.level,
                                 (SystemClock.elapsedRealtime() - nPuzzleActivity.chronometer.base).toInt(),
                                 MainActivity.user.name,
                                 nPuzzle.imgName
                             )
-                            launch {
-                                val db = AppDatabase.getInstance(context)
-                                db.userDao().updateUser(MainActivity.user)//
-                                db.scoreDao().insertScore(score)
+
+                            //Save score
+                            if (nPuzzle.gameMode == NPuzzle.GameMode.FIREBASE_IMG) {
+                                val scoresRef = Firebase.database.getReference("scores").push()
+
+                                if (Firebase.auth.currentUser?.isAnonymous === false) {
+                                    score.nickname = Firebase.auth.currentUser!!.displayName!!
+                                }
+
+                                scoresRef.setValue(score)
+                            } else {
+                                saveScoreSQLite(score)
                             }
                         }
                     }, animDuration)
@@ -221,6 +235,14 @@ class NPuzzleAdapter() : BaseAdapter(), CoroutineScope {
             else -> Handler().postDelayed({
                 typingAnimation(view, text, length+1 )
             }, delay)
+        }
+    }
+
+    private fun saveScoreSQLite(score: ScoreEntity) {
+        launch {
+            val db = AppDatabase.getInstance(context)
+            db.userDao().updateUser(MainActivity.user)
+            db.scoreDao().insertScore(score)
         }
     }
 }

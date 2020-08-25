@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.awaredevelopers.puzzledroid.R
@@ -13,7 +14,7 @@ import com.awaredevelopers.puzzledroid.R
 class HelpFragment: Fragment()  {
 
     companion object{
-        const val URL = "https://gustavoquinalha.github.io/jekyll-help-center-theme/"
+        const val URL = "https://puzzledroid.github.io/PuzzleDroid/"
     }
 
     private lateinit var helpViewModel: HelpViewModel
@@ -28,6 +29,7 @@ class HelpFragment: Fragment()  {
         val root = inflater.inflate(R.layout.fragment_help, container, false)
         val webview = root.findViewById<WebView>(R.id.help_webview)
         webview.settings.javaScriptEnabled = true
+        webview.settings.domStorageEnabled = true
         webview.loadUrl(URL)
 
         return root

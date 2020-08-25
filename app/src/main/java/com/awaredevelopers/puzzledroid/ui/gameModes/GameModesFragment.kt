@@ -40,7 +40,7 @@ class GameModesFragment : Fragment() {
         }
 
         root.findViewById<TextView>(R.id.textViewMode4).setOnClickListener {
-            startNPuzzleActivityGameMode(4, NPuzzleActivity::class.java)
+            startNPuzzleActivityGameMode(4, IntentActivity::class.java)
         }
         return root
     }
@@ -49,6 +49,7 @@ class GameModesFragment : Fragment() {
         val b = Bundle()
         b.putInt("GameModeKey", gameModeValue)
         intent.putExtras(b)
+
         startActivity(intent)
     }
 }

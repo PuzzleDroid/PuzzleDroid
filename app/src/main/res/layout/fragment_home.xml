@@ -76,6 +76,26 @@
             <com.google.android.material.button.MaterialButton
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:hapticFeedbackEnabled="true"
+                android:id="@+id/global_score"
+                android:layout_width="match_parent"
+                android:soundEffectsEnabled="true"
+                android:text="@string/menu_global_scores"
+                android:fontFamily="@font/baby_monsta"
+                android:textColor="#FFFFFF"
+                android:textAlignment="center"
+                android:textSize="25sp"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:gravity="center">
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:hapticFeedbackEnabled="true"
                 android:id="@+id/exit"
                 android:layout_width="match_parent"
                 android:soundEffectsEnabled="true"

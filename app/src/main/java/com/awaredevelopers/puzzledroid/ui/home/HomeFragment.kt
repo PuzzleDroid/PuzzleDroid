@@ -5,18 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.awaredevelopers.puzzledroid.R
 import kotlin.system.exitProcess
-import com.awaredevelopers.puzzledroid.db.entity.ScoreEntity
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
-    private lateinit var scoreList: List<ScoreEntity>
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -33,6 +30,10 @@ class HomeFragment : Fragment() {
 
         root.findViewById<Button>(R.id.score).setOnClickListener {
             findNavController().navigate(R.id.action_HomeFragment_to_ScoresFragment)
+        }
+
+        root.findViewById<Button>(R.id.global_score).setOnClickListener {
+            findNavController().navigate(R.id.action_HomeFragment_to_GlobalScoresFragment)
         }
 
         root.findViewById<Button>(R.id.exit).setOnClickListener {

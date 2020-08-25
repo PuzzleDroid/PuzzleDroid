@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[17],{74:function(e,n,t){"use strict";t.r(n);var o=t(0),c=t.n(o),i=t(94),r=t(83);n.default=function(){return Object(r.a)().siteConfig,c.a.createElement(i.Redirect,{to:"/PuzzleDroid/docs"})}}}]);
