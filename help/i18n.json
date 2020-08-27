@@ -1,0 +1,10 @@
+{
+  "allLanguages": ["en", "es"],
+  "defaultLanguage": "en",
+  "currentPagesDir": "pages_",
+  "finalPagesDir": "pages",
+  "localesPath": "public/static/locales",
+  "pages": {
+    "*": ["common", "howto", "save", "win"]
+  }
+}
