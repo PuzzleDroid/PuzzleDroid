@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "394558863394",
-    "firebase_url": "https://puzzledroid-fadc9.firebaseio.com",
-    "project_id": "puzzledroid-fadc9",
-    "storage_bucket": "puzzledroid-fadc9.appspot.com"
+    "project_number": "247025161509",
+    "firebase_url": "https://puzzledroid-23a19.firebaseio.com",
+    "project_id": "puzzledroid-23a19",
+    "storage_bucket": "puzzledroid-23a19.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:394558863394:android:84e4bb112955170c54327b",
+        "mobilesdk_app_id": "1:247025161509:android:15bf961ee05a763158f6cc",
         "android_client_info": {
           "package_name": "com.awaredevelopers.puzzledroid"
         }
       },
       "oauth_client": [
         {
-          "client_id": "394558863394-3dlqpod6e97a1g1vca3sbk01hupd511v.apps.googleusercontent.com",
+          "client_id": "247025161509-7v1s6cqor2hktnogr8fkhubb4idokl35.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.awaredevelopers.puzzledroid",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "394558863394-s38vbeqgcu3nb4kse9fu3jd7j0k6bmk1.apps.googleusercontent.com",
+          "client_id": "247025161509-8ljcnnptr1cuoeoovat2tvj2liu23fo3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBUNYWd16_5_q7uKA9ib6FtHB5Vsfnqdh4"
+          "current_key": "AIzaSyAen-S9GGwMKzJD0tjkUE__wawL6H1soB8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "394558863394-s38vbeqgcu3nb4kse9fu3jd7j0k6bmk1.apps.googleusercontent.com",
+              "client_id": "247025161509-8ljcnnptr1cuoeoovat2tvj2liu23fo3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

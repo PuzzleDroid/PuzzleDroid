@@ -26,6 +26,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.net.URL
+import java.util.concurrent.atomic.AtomicReferenceArray
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -58,23 +59,30 @@ class IntentActivity : AppCompatActivity() {
     }
 
     private fun getFromFirebase() {
-        var storage = FirebaseStorage.getInstance("gs://puzzledroid-fadc9.appspot.com")
+        var storage = FirebaseStorage.getInstance("gs://puzzledroid-23a19.appspot.com")
         var listRef = storage.getReference()
-        var result = ArrayList<Task<Uri>>()
+        var result = ArrayList<ArrayList<Any>>()
 
-        suspend fun getImages(listRef: StorageReference): Uri {
+        suspend fun getImages(listRef: StorageReference): ArrayList<Any> {
             return suspendCoroutine { continuation ->
                 val list = listRef.listAll()
 
                 list.addOnSuccessListener { listResult ->
                     listResult.items.forEach { item ->
-                        result.add(item.downloadUrl)
+                        val image = ArrayList<Any>()
+                        image.add(item.downloadUrl)
+                        image.add(item.name)
+                        result.add(image)
                     }
 
-                    val range = (0 until result.count())
+                    val element = result[(0 until result.count()).random()]
+                    val task: Task<Uri> = element[0] as Task<Uri>
 
-                    result[range.random()].addOnSuccessListener { uri ->
-                        continuation.resume(uri)
+                    task.addOnSuccessListener { uri ->
+                        val items = ArrayList<Any>()
+                        items.add(uri)
+                        items.add(element[1])
+                        continuation.resume(items)
                     }
                 }
 
@@ -85,15 +93,19 @@ class IntentActivity : AppCompatActivity() {
         }
 
         GlobalScope.launch{
-            var route: Uri = Uri.EMPTY
+            var route: ArrayList<Any> = ArrayList()
+
             launch{
                 route = getImages(listRef)
             }.join()
 
             run {
-                val url = URL(route.toString())
+                val uri = route[0] as Uri
+                val url = URL(uri.toString())
+                val name = route[1] as String
                 val bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream())
-                startNPuzzleActivityGameMode(4, route, bmp)
+
+                startNPuzzleActivityGameMode(4, uri, bmp, name)
             }
         }
     }
@@ -126,17 +138,18 @@ class IntentActivity : AppCompatActivity() {
             } else if (requestCode == REQUEST_CAMERA) {
                 imageUri = image_uri
             }
-            startNPuzzleActivityGameMode(gameMode.toInt(), imageUri, null)
+            startNPuzzleActivityGameMode(gameMode.toInt(), imageUri, null, "")
         } else {
             onBackPressed()
         }
     }
 
-    private fun startNPuzzleActivityGameMode(gameModeValue: Int, imageUri: Uri?, bmp: Bitmap?) {
+    private fun startNPuzzleActivityGameMode(gameModeValue: Int, imageUri: Uri?, bmp: Bitmap?, name: String?) {
         val intent = Intent(this, NPuzzleActivity::class.java)
         val b = Bundle()
         b.putInt("GameModeKey", gameModeValue)
         b.putString("imageUri", imageUri.toString())
+        b.putString("name", name.toString())
 
         if (bmp != null) {
             val stream = ByteArrayOutputStream()

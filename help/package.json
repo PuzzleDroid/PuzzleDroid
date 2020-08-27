@@ -1,33 +1,21 @@
 {
-  "name": "puzzle-droid-help",
-  "version": "0.0.0",
+  "name": "learn-starter",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "docusaurus": "docusaurus",
-    "start": "docusaurus start",
-    "build": "docusaurus build && rm -rf ../docs/**/* && mv build/**/* ../docs",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
-    "serve": "docusaurus serve"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "static": "next build && next export -o ../docs"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.61",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.61",
-    "@mdx-js/react": "^1.5.8",
-    "clsx": "^1.1.1",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "gray-matter": "^4.0.2",
+    "next": "9.3.5",
+    "next-i18next": "^6.0.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "sass": "^1.26.10"
   }
 }

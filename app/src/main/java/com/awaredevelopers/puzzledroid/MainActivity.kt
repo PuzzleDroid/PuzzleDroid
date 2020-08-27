@@ -1,23 +1,17 @@
 package com.awaredevelopers.puzzledroid
 
-
 import android.content.Intent
-import android.R.attr
-import android.media.MediaPlayer
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.net.toUri
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -60,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         username.text = Firebase.auth.currentUser?.displayName
 
-        val sigin: TextView = headerView.findViewById(R.id.sign_in)
+        val sigin: Button = headerView.findViewById(R.id.sign_in)
 
         if (Firebase.auth.currentUser?.isAnonymous === true) {
             sigin.text = "Sign In"

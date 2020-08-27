@@ -40,15 +40,32 @@ class GlobalScoresFragment : Fragment() {
         listView.adapter = scoresAdapter
 
         val scoresDbRef = Firebase.database.getReference("scores")
+            // .orderByChild("score")
+            .limitToLast(10)
 
         scoresDbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                val t: GenericTypeIndicator<HashMap<String, ScoreEntity>> =
-                    object : GenericTypeIndicator<HashMap<String, ScoreEntity>>() {}
+                val t: GenericTypeIndicator<ScoreEntity> =
+                    object : GenericTypeIndicator<ScoreEntity>() {}
 
-                val value: HashMap<String, ScoreEntity> = dataSnapshot.getValue(t)!!
+
+                var value: HashMap<String, ScoreEntity> = HashMap()
+
+                for (child in dataSnapshot.children) {
+                    val element = child.getValue(t)
+
+                    value.put(child.key!!, element!!)
+                }
+
+                value = value.entries.sortedBy {
+                    it.value.score
+                }.associateBy({ it.key }, { it.value }) as HashMap<String, ScoreEntity>
+
+                value = value.entries.sortedBy {
+                    it.value.level
+                }.asReversed().associateBy({ it.key }, { it.value }) as HashMap<String, ScoreEntity>
 
                 Log.d("Firebase", "Value is: $value")
 
