@@ -2,7 +2,8 @@
     <string name="app_name" translatable="false">PuzzleDroid</string>
     <string name="nav_header_title" translatable="false">PuzzleDroid</string>
     <string name="nav_header_subtitle" translatable="false">Rubik Soft</string>
-    <string name="nav_header_sign_out" translatable="false">Sign Out</string>
+    <string name="nav_header_sign_in">Sign In</string>
+    <string name="nav_header_sign_out">Sign Out</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

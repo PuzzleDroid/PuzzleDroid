@@ -9,6 +9,7 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.awaredevelopers.puzzledroid.R
+import java.util.*
 
 @Suppress("DEPRECATION")
 class HelpFragment: Fragment()  {
@@ -30,7 +31,12 @@ class HelpFragment: Fragment()  {
         val webview = root.findViewById<WebView>(R.id.help_webview)
         webview.settings.javaScriptEnabled = true
         webview.settings.domStorageEnabled = true
-        webview.loadUrl(URL)
+
+        if (Locale.getDefault().getLanguage()  === "es") {
+            webview.loadUrl("${URL}es")
+        } else {
+            webview.loadUrl(URL)
+        }
 
         return root
     }

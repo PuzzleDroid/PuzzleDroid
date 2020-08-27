@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -24,7 +25,7 @@ import com.awaredevelopers.puzzledroid.utility.AudioFactory.customTheme
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-
+import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,13 +52,15 @@ class MainActivity : AppCompatActivity() {
         val headerView: View = navView.getHeaderView(0)
 
         val username: TextView = headerView.findViewById(R.id.username)
-
-        username.text = Firebase.auth.currentUser?.displayName
+        val user_photo: ImageView = headerView.findViewById(R.id.user_photo)
 
         val sigin: Button = headerView.findViewById(R.id.sign_in)
 
         if (Firebase.auth.currentUser?.isAnonymous === true) {
-            sigin.text = "Sign In"
+            sigin.text = getString(R.string.nav_header_sign_in)
+        } else {
+            username.text = Firebase.auth.currentUser?.displayName
+            Picasso.get().load(Firebase.auth.currentUser?.photoUrl.toString()).into(user_photo);
         }
 
         try {

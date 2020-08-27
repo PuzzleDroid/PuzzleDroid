@@ -30,12 +30,15 @@
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             android:text="@string/nav_header_title"
+            android:textStyle="bold"
+            android:textColor="#fff"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#fff"
             android:text="@string/nav_header_subtitle" />
     </LinearLayout>
 
@@ -45,10 +48,36 @@
         android:layout_height="match_parent"
         android:gravity="bottom|right">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:cardCornerRadius="250dp"
+            app:cardBackgroundColor="@color/fui_transparent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="250dp"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/user_photo"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="centerCrop"/>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.cardview.widget.CardView>
+
+
         <TextView
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="@string/settings_user"
+            android:textStyle="bold"
             android:clickable="true" />
 
         <Button
@@ -56,6 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="signOut"
+            android:textSize="10dp"
             android:text="@string/nav_header_sign_out" />
     </LinearLayout>
 </LinearLayout>

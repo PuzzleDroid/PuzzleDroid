@@ -3,7 +3,8 @@
     <string name="navigation_drawer_open">Abrir navegador</string>
     <string name="navigation_drawer_close">Cerrar Navegador</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="nav_header_sign_out" translatable="false">Desconectarse</string>
+    <string name="nav_header_sign_in">Conectarse</string>
+    <string name="nav_header_sign_out">Desconectarse</string>
 
     <string name="action_settings">Configuración</string>
 
