@@ -64,19 +64,6 @@ export default function Home() {
     <ThemeProvider theme={theme}>
       <Head>…</Head>
       <CssBaseline />
-      <AppBar component="span" position="static" style={{ padding: "10px" }}>
-        <Toolbar>
-          <Container maxWidth="md">
-            <Typography
-              color="textSecondary"
-              variant="h4"
-              style={{ fontWeight: "bold" }}
-            >
-              {t("common:title")}
-            </Typography>
-          </Container>
-        </Toolbar>
-      </AppBar>
       <Container
         maxWidth="md"
         style={{ marginTop: "50px", marginBottom: "80px" }}
